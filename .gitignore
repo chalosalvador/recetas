@@ -30,5 +30,7 @@ npm-debug.log*
 /plugins
 /www
 
-/src/environments/environment.*
+/src/environments/*
 !/src/environments/environment.model.ts
+!**/.gitkeep
+

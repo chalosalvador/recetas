@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "265658966031",
+    "firebase_url": "https://dev-plan-recetas.firebaseio.com",
+    "project_id": "dev-plan-recetas",
+    "storage_bucket": "dev-plan-recetas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265658966031:android:9255f56d1b2e72192a837a",
+        "android_client_info": {
+          "package_name": "com.grupomenta.planrecetas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265658966031-n52te2bj2mtv72qeoaliop3skhbrhvmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXKOLL-JowfOzEnAV0-dq2VF0IYWa5yHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265658966031-n52te2bj2mtv72qeoaliop3skhbrhvmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
