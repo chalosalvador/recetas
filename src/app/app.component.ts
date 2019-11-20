@@ -53,7 +53,7 @@ export class AppComponent {
             this.splashScreen.hide();
           } else {
             console.log( 'NO LoggedIn' );
-            await this.navController.navigateRoot( [ '/' ] );
+            await this.navController.navigateRoot( [ 'login' ] );
             this.splashScreen.hide();
           }
         });
