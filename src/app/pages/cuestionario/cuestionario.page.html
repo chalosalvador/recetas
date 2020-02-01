@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <!--boton de regresar-->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title >
+      CUESTIONARIO
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+
+    <form [formGroup]="cuestionarioForm" (ngSubmit)="onSubmit()">
+    <ion-item >
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" formControlName="nombre" required inputmode="nombre" clearInput="true" autofocus="true"
+                   autocomplete="true"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="cuestionarioFormValidator.nombre.empty">
+      <ion-label text-wrap color="danger">
+        {{ cuestionarioFormValidator.nombre.empty }}
+      </ion-label>
+    </ion-item>
+    <ion-item >
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" formControlName="apellido" required inputmode="apellido" clearInput="true" autofocus="true"
+                 autocomplete="true"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="cuestionarioFormValidator.apellido.empty">
+    <ion-label text-wrap color="danger">
+      {{ cuestionarioFormValidator.apellido.empty }}
+    </ion-label>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">Apodo</ion-label>
+    <ion-input type="text" formControlName="apodo" required inputmode="apodo" clearInput="true" autofocus="true"
+               autocomplete="true"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="cuestionarioFormValidator.apodo.empty">
+    <ion-label text-wrap color="danger">
+      {{ cuestionarioFormValidator.apodo.empty }}
+    </ion-label>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">Fecha de Nacimiento</ion-label>
+    <ion-input type="date" name="fechaNac" required inputmode="fechaNac" clearInput="true" autofocus="true"
+               autocomplete="true" ></ion-input>
+  </ion-item>
+  
+  <ion-item >
+    <ion-label position="floating">Altura</ion-label>
+    <ion-input type="altura" formControlName="altura" required inputmode="altura" clearInput="true" autofocus="true"
+               autocomplete="true"></ion-input>
+   </ion-item>
+   <ion-item *ngIf="cuestionarioFormValidator.altura.empty">
+    <ion-label text-wrap color="danger">
+      {{ cuestionarioFormValidator.altura.empty }}
+    </ion-label>
+  </ion-item>
+   <ion-item >
+    <ion-label position="floating">Peso</ion-label>
+    <ion-input type="peso" formControlName="peso" required inputmode="peso" clearInput="true" autofocus="true"
+               autocomplete="true"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="cuestionarioFormValidator.peso.empty">
+      <ion-label text-wrap color="danger" >
+        {{ cuestionarioFormValidator.peso.empty }}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Genero</ion-label>
+      <ion-select placeholder="Genero">
+        <ion-select-option value="f">Femenino</ion-select-option>
+        <ion-select-option value="m">Masculino</ion-select-option>
+      </ion-select>
+    </ion-item>
+</form>
+<ion-button type="submit" size="small" color="success" expand="block" routerLink="/info-salud">Siguiente</ion-button>
+</ion-card>
+
+</ion-content>

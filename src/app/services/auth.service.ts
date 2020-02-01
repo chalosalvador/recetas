@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 // import { auth } from 'firebase/app';
 import { environment } from 'src/environments/environment';
+import { UserService } from './user.service';
 
 @Injectable( {
   providedIn: 'root'
 } )
 export class AuthService {
 
-  constructor( public afAuth: AngularFireAuth ) {
+  constructor( public afAuth: AngularFireAuth, public userService : UserService ) {
   }
 
   public getCurrentUser() {
@@ -35,7 +36,8 @@ export class AuthService {
         installApp: true,
         minimumVersion: '12'
       },
-      dynamicLinkDomain: 'planrecetas.grupomenta.com' // todo
+      //dynamicLinkDomain: 'planrecetas.grupomenta.com' // todo
+      dynamicLinkDomain: 'devplanrecetas.grupomenta.com'
     };
 
     return this.afAuth.auth.sendSignInLinkToEmail( email, actionCodeSettings )
@@ -81,6 +83,21 @@ export class AuthService {
         // You can check if the user is new or existing:
         // result.additionalUserInfo.isNewUser
         console.log( 'result.additionalUserInfo.isNewUser', result.additionalUserInfo.isNewUser );
+        const isNewUser = result.additionalUserInfo.isNewUser;
+        if(isNewUser) {
+          // insertar el usuario en la bdd con id y email
+          // users/IDUSERdel result
+          try {
+            await this.userService.createUser;
+          } catch (error) {
+            console.error(error);
+            //mostar el mensaje de error en un toast
+          }
+
+          /* {
+            email: USEREMAIL que esta en result
+          } */
+        } 
 
       } catch ( error ) {
         // Some error occurred, you can inspect the code: error.code

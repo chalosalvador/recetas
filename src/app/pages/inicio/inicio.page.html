@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="success">
+  
+    <ion-title >
+      BIENVENIDOS A LA APP
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button type="button" size="small" (click)="doLogout()">Cerrar sesión</ion-button>
+  <ion-title ></ion-title>
+  <!--galeria de imagenes-->
+  <ion-card class="welcome-card">
+    <ion-slides>
+      <ion-slide><img src="/assets/fondo1.jpg" /></ion-slide>
+      <ion-slide><img src="/assets/fondo3.jpg" /></ion-slide>
+      <ion-slide><img src="/assets/fondo2.jpg" /></ion-slide>
+    </ion-slides>
+    </ion-card>
+    <ion-list lines="none">
+      <!--redirigir a la pagina cuestionario-->
+      <ion-item routerLink="/cuestionario" >
+        <ion-icon slot="start" color="medium" name="arrow-dropright-circle"></ion-icon>
+        <ion-label>EMPEZAR</ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>

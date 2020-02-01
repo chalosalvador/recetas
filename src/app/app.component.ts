@@ -37,7 +37,7 @@ export class AppComponent {
           try {
             await this.authService.signInWithEmailLink( res.deepLink );
             console.log( 'LoggedIn' );
-            await this.navController.navigateRoot( [ 'home/tabs/tab1' ] );
+            //await this.navController.navigateRoot( [ 'home/tabs/tab1' ] );
           } catch ( e ) {
             await this.commonService.presentAlert('Login', '', 'Hubo un error al iniciar sesión.');
           }
@@ -49,11 +49,25 @@ export class AppComponent {
         .subscribe(async ( user ) => {
           if ( user ) {
             console.log( 'LoggedIn', user );
-            await this.navController.navigateRoot( [ 'home/tabs/tab1' ] );
+            // hacer consulta a la base para traer datos del usuario que esta ingresando
+             this.userService.getUser(user.id).subscribe(async (userData)=>{
+              if(!userData.name) { // nos dice si ya lleno o no el formualrio de datos
+                await this.navController.navigateRoot( [ 'inicio' ] ); // va al form de datos
+              } else {
+                await this.navController.navigateRoot( [ 'home/tabs/tab1' ] ); // va al inicio de app
+              }
+             });
+
+            
+            
+
+            //await this.navController.navigateRoot( [ 'inicio' ] );
             this.splashScreen.hide();
           } else {
             console.log( 'NO LoggedIn' );
-            await this.navController.navigateRoot( [ 'login' ] );
+            //await this.navController.navigateRoot( [ 'login' ] );
+            await this.navController.navigateRoot( [ 'home/tabs/tab1' ] );
+            
             this.splashScreen.hide();
           }
         });
