@@ -52,7 +52,7 @@ export class AppComponent {
           if ( user ) {
             console.log( 'LoggedIn', user );
             // hacer consulta a la base para traer datos del usuario que esta ingresando
-            this.userService.getUser( user.id ).subscribe( async ( userData: any ) => {
+            this.userService.getUser( user.uid ).subscribe( async ( userData: any ) => {
               if ( !userData.name ) { // nos dice si ya lleno o no el formualrio de datos
                 await this.navController.navigateRoot( [ 'inicio' ] ); // va al form de datos
               } else {
