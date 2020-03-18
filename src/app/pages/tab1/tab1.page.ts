@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { NgForm } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
+import { CuestionarioPage} from '../cuestionario/cuestionario.page';
+
 
 @Component({
   selector: 'app-tab1',
@@ -10,8 +12,8 @@ import { CommonService } from '../../services/common.service';
 })
 export class Tab1Page {
 
-  constructor(private authService: AuthService, public commonService: CommonService ) {}
-
+  constructor(private authService: AuthService, public commonService: CommonService) {}
+  
   async doLogout() {
     try {
       await this.authService.logout();

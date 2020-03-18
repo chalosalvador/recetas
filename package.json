@@ -36,6 +36,7 @@
     "cordova-android": "^8.1.0",
     "cordova-plugin-androidx": "^1.0.2",
     "cordova-plugin-androidx-adapter": "^1.1.0",
+    "cordova-plugin-firebase-analytics": "^4.1.2",
     "cordova-plugin-firebase-dynamiclinks": "^4.2.0",
     "cordova-plugin-firebasex": "^9.0.1",
     "cordova-support-android-plugin": "^1.0.1",
@@ -44,6 +45,7 @@
     "firebase": "^7.11.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.11.1",
+    "validator": "latest",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

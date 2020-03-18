@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <!--boton de regresar-->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cuestionario"></ion-back-button>
+    </ion-buttons>
+    <ion-title >
+      INFORMACION DE SALUD
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      
+      <ion-card-title>Seleccione una o varias de las opciones
+        relacionadas a problemas de salud
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!---->
+      <ion-list>
+        <ion-item>
+          <ion-checkbox color="success"></ion-checkbox>
+          <ion-label>Diabetes</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox color="success"></ion-checkbox>
+          <ion-label>Presion Alta</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox color="success"></ion-checkbox>
+          <ion-label>Colesterol Alto</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox color="success"></ion-checkbox>
+          <ion-label>Problemas Cardiacos</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox color="success"></ion-checkbox>
+          <ion-label>Anemia</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    <ion-button type="submit" size="small" color="success" expand="block" routerLink="/home/tabs/tab1" >Finalizar</ion-button>
+  </ion-card>
+  
+
+</ion-content>
