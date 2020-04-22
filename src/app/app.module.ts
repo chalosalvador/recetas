@@ -16,9 +16,15 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { FirebaseDynamicLinks } from '@ionic-native/firebase-dynamic-links/ngx';
 
+
 @NgModule( {
-  declarations: [ AppComponent ],
-  entryComponents: [],
+  declarations: [ 
+    AppComponent,
+    
+   ],
+  entryComponents: [
+    
+  ],
   imports: [ BrowserModule,
              IonicModule.forRoot(),
              AppRoutingModule,
@@ -36,7 +42,8 @@ import { FirebaseDynamicLinks } from '@ionic-native/firebase-dynamic-links/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FirebaseDynamicLinks
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  
 } )
 export class AppModule {
 }
