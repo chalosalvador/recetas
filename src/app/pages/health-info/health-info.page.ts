@@ -59,7 +59,7 @@ export class HealthInfoPage implements OnInit {
     .then(
       async res=>{
         await this.commonService.presentAlert( 'Problemas salud', '', 'Registro Exitoso.' );
-        this.router.navigate(['/home/tabs/tab1'])
+        this.router.navigate(['/tabs/tab1'])
       }
     
     )

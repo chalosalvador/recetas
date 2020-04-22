@@ -9,21 +9,92 @@
 </ion-header>
 
 <ion-content>
-  <ion-button type="button" size="small" (click)="doLogout()">Cerrar sesión</ion-button>
-  <ion-title ></ion-title>
-  <!--galeria de imagenes-->
-  <ion-card class="welcome-card">
-    <ion-slides>
-      <ion-slide><img src="/assets/fondo1.jpg" /></ion-slide>
-      <ion-slide><img src="/assets/fondo3.jpg" /></ion-slide>
-      <ion-slide><img src="/assets/fondo2.jpg" /></ion-slide>
-    </ion-slides>
-    </ion-card>
-    <ion-list lines="none">
-      <!--redirigir a la pagina cuestionario-->
-      <ion-item routerLink="/information" >
-        <ion-icon slot="start" color="medium" name="arrow-dropright-circle"></ion-icon>
-        <ion-label>EMPEZAR</ion-label>
-      </ion-item>
-    </ion-list>
+  
+  <ion-slides pager="true" class="slide-full">
+
+    <ion-slide *ngFor="let slide of slides" text-center>
+      
+      <div class="slide-img-padding">
+        <img [src]="slide.img" class="slide-img">
+      </div>
+      <br>
+      <br>
+      <div>
+        <h3 [innerHTML]="slide.titulo"></h3>
+      </div>
+      
+
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img src="assets/Tomates.gif">
+      </div>
+      
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="10" offset="1">
+    
+            <ion-button color="success"
+                        expand="full"
+                        shape="round"
+                        class="btn-primary"
+                        mode="ios"
+                        routerLink="/information">
+                        
+              EMPEZAR
+            </ion-button>
+    
+          </ion-col>
+        </ion-row>
+    
+        <ion-row>
+          <ion-col size="6" offset="3">
+    
+            <ion-button expand="full" fill="clear">
+              <ion-label color="dark">Sign In</ion-label>
+            </ion-button>
+    
+          </ion-col>
+        </ion-row>
+    
+      </ion-grid>
+
+    </ion-slide>
+
+  </ion-slides>
+
+
 </ion-content>
+
+<!--<ion-footer no-border text-center>
+  
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="10" offset="1">
+
+        <ion-button color="primary"
+                    expand="full"
+                    shape="round"
+                    class="btn-primary"
+                    mode="ios">
+          GET MY PLAN
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" offset="3">
+
+        <ion-button expand="full" fill="clear">
+          <ion-label color="dark">Sign In</ion-label>
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  
+
+</ion-footer>-->
