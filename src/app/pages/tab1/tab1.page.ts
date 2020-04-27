@@ -6,8 +6,6 @@ import { InformationPage} from '../information/information.page';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserService } from '../../services/user.service';
 
-
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -17,7 +15,6 @@ export class Tab1Page {
 
   constructor(public afAuth: AngularFireAuth,private authService: AuthService, public commonService: CommonService, private userService: UserService,) {}
 
-  
   async doLogout() {
     try {
       await this.authService.logout();

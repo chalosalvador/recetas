@@ -71,7 +71,6 @@ export class AppComponent {
             console.log( 'NO LoggedIn' );
              //await this.navController.navigateRoot( [ 'information' ] );
             await this.navController.navigateRoot( [ 'login' ] );
-
             this.splashScreen.hide();
           }
         } );
