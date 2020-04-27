@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
 import { InformationPage} from '../information/information.page';
 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -13,7 +12,6 @@ import { InformationPage} from '../information/information.page';
 export class Tab1Page {
 
   constructor(private authService: AuthService, public commonService: CommonService) {}
-  
   async doLogout() {
     try {
       await this.authService.logout();

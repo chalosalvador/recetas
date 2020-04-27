@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'information', loadChildren: './pages/information/information.module#InformationPageModule' },
   { path: 'health-info', loadChildren: './pages/health-info/health-info.module#HealthInfoPageModule' },
   { path: 'start', loadChildren: './pages/start/start.module#StartPageModule' },
-  
   // { path: 'loading', loadChildren: './pages/loading/loading.module#LoadingPageModule' }
 ];
 @NgModule({
