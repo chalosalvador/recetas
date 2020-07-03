@@ -1,0 +1,47 @@
+ion-title{
+    color: #00008B;
+}
+.nutrition{
+    background: #ADFF2F;
+    color: #00008B;
+    padding: 10px;
+    text-align: center;
+}
+div,img{
+    display: block;
+    position: relative;		
+    
+}
+.serving{
+    border-radius: 20px;
+    border: whitesmoke 2px solid;
+    background-color:opacify($color: #8a888800, $amount: 0.5);
+    display: block;
+    color:  #fff;
+    position: absolute;
+    bottom: 8px;
+    left: 160px;
+    padding: 5px;
+    width: 40%;
+}
+.food{
+    border-radius: 20px;
+    border: whitesmoke 2px solid;
+    background-color:opacify($color: #8a888800, $amount: 0.5);
+    display: block;
+    color:  #fff;
+    position: absolute;
+    bottom: 45px;
+    left: 160px;
+    padding: 5px;
+    width: 40%;
+
+}
+.hr{
+    height: 3px;
+    background-color: #D8D7D7;
+}
+h1{
+    color:#454545;
+    text-align: center;
+}

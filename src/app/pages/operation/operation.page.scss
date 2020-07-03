@@ -1,0 +1,30 @@
+
+ion-slide {
+    display: block;
+}
+.slide-full{
+    height: 100% !important;
+}
+
+h3 {
+    font-size: 30;
+    font-weight: lighter;
+    margin-bottom: 60px;
+}
+
+div,img{
+    display: block;
+    position: relative;		
+    
+}
+ion-button{
+    position: absolute;
+    left: 160px;//posicion horizontal
+    padding: 5px;
+    width: 40%;
+    bottom: 45px;//posicion vertical
+}
+
+ion-grid {
+    margin-bottom: 20px;
+}

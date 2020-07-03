@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Perfil
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-xs="12" size-md="6" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+              <p>Perfil</p>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+
+            <!---->
+            <ion-row>
+              <ion-col size="12">
+                <ion-img class="user-avatar" src="https://image.flaticon.com/icons/png/512/149/149071.png"></ion-img>
+              </ion-col>
+              <ion-col size="12">
+                <ion-list>
+                  <ion-item>
+                    <label>Nombre:</label>
+                    <p slot="end">{{details.name}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <label>Apellido:</label>
+                    <p slot="end">{{details.lastname}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <label>Apodo:</label>
+                    <p slot="end">{{details.nickname}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <label>Fecha Nacimiento:</label>
+                    <p slot="end">{{details.dateBirth | date: 'dd/MM/yyyy'}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <label>Altura:</label>
+                    <p slot="end">{{details.height}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <label>Peso:</label>
+                    <p slot="end">{{details.weight}}</p>
+                  </ion-item>
+                  <!-- <ion-select  placeholder="{{details.name}}">
+                    
+                  </ion-select> -->
+
+                </ion-list>
+              </ion-col>
+            </ion-row>
+
+
+
+
+            <!--<ion-button type="button" size="small" color="success" expand="block" [disabled]="!form.valid" (click)="save(problem)" cuando solo es un boton se usa click>Finalizar</ion-button>-->
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
