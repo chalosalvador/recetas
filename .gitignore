@@ -30,7 +30,10 @@ npm-debug.log*
 /plugins
 /www
 
-/src/environments/*
-!/src/environments/environment.model.ts
-!**/.gitkeep
 
+/src/environments/environment.*
+!/src/environments/environment.model.ts
+/src/environments/google_services/google-services.*.json
+/src/environments/google_services/GoogleService-Info.*.plist
+google-services.json
+GoogleService-Info.plist

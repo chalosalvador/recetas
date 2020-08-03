@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <!--boton de regresar-->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      LISTA DE RECETAS
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen>
+
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ion-card *ngFor="let recipe of recipesList">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+              <p>
+                {{recipe.name}}
+              </p>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item (click)='pass(recipe)'>
+                <!--iMPREME LAS IMAGENES DE RECETAS -->
+                <img src="{{recipe.photo}}">
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

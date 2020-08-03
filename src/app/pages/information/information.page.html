@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar>
+    <!--boton de regresar-->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/start">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      CUESTIONARIO
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ion-card>
+
+          <ion-card-content>
+            <form [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)">
+              <ion-item>
+                <ion-label position="floating">
+                  Nombre
+                </ion-label>
+                <ion-input type="text" [(ngModel)]=name formControlName="name" required inputmode="name"
+                  clearInput="true" autofocus="true" autocomplete="true" autocapitalize="words">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">
+                  Apellido
+                </ion-label>
+                <ion-input type="text" [(ngModel)]=lastname formControlName="lastname" required inputmode="lastname"
+                  clearInput="true" autofocus="true" autocomplete="true" autocapitalize="words">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">
+                  Apodo
+                </ion-label>
+                <ion-input type="text" [(ngModel)]=nickname formControlName="nickname" required inputmode="nickname"
+                  clearInput="true" autofocus="true" autocomplete="true">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">
+                  Fecha de Nacimiento
+                </ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="YYYY MM DD" [(ngModel)]=dateBirth
+                  formControlName="dateBirth" required inputmode="dateBirth" clearInput="true" autofocus="true"
+                  cancelText="Cancelar" donetext="OK">
+                </ion-datetime>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">
+                  Altura
+                </ion-label>
+                <ion-input type="number" [(ngModel)]=height formControlName="height" required inputmode="height"
+                  clearInput="true" autofocus="true" autocomplete="true" placeholder="Altura en cm.">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">
+                  Peso
+                </ion-label>
+                <ion-input type="number" [(ngModel)]=weight formControlName="weight" required inputmode="weight"
+                  clearInput="true" autofocus="true" autocomplete="true" placeholder="Peso en kg.">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  Genero
+                </ion-label>
+                <ion-select formControlName="gender" placeholder="gender">
+                  <ion-select-option value="femenino">
+                    Femenino
+                  </ion-select-option>
+                  <ion-select-option value="masculino">
+                    Masculino
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  Tipo de actividad física
+                </ion-label>
+                <ion-select formControlName="dailyActivities" placeholder="dailyActivities" >
+                  <ion-select-option value="sedentario">
+                    Sedentario
+                  </ion-select-option>
+                  <ion-select-option value="poco activo">
+                    Poco Activo
+                  </ion-select-option>
+                  <ion-select-option value="activo">
+                    Activo
+                  </ion-select-option>
+                  <ion-select-option value="muy activo">
+                    Muy Activo
+                  </ion-select-option>
+                  <ion-select-option value="atleta">
+                    Atleta
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-grid fixed>
+                <ion-row>
+                  <ion-col size="10" offset="1">
+                    <br>
+                    <br>
+                    <ion-button type="submit" color="success" expand="full" shape="round" class="btn-primary" mode="ios"
+                     [disabled]="!validations_form.valid">
+                     <span *ngIf="!showInformationSpinner">Siguiente</span> 
+                     <span *ngIf="showInformationSpinner">Guardando</span>
+                      <ion-spinner name="dots" *ngIf="isSave">
+                        
+                      </ion-spinner>
+                    </ion-button>
+
+                  </ion-col>
+                </ion-row>
+
+              </ion-grid>
+
+            </form>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

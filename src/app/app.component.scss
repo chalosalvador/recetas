@@ -1,0 +1,31 @@
+:host ::ng-deep{
+    ion-avatar{
+        --border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        display: -webkit-inline-box;
+
+    }
+}
+ion-header{
+    background: #ADFF2F;
+    --color: #00008B;
+          justify-content: center;
+          text-align: center;
+          padding-top: 35px;
+          .title {
+              img {
+                  
+                  height: 100px;
+                  width: 100px;
+              }
+            }
+}
+
+ion-icon{
+    color: #ADFF2F;
+
+}
+p{
+    color: #00008B;  
+}

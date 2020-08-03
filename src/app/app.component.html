@@ -1,3 +1,69 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<!--Side Menu -->
+<ion-menu side="start" menuId="first">
+  <ion-header>
+    <div class="title">
+      <ion-avatar >
+                  
+        <ion-img  src="{{detailsImage.image}}"></ion-img>
+     
+    </ion-avatar>
+      <!-- <img src="https://image.flaticon.com/icons/png/512/149/149071.png"> -->
+    </div>
+    <p>
+      {{profileInfo.email}}
+    </p>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item routerLink="tabs/tab1">
+          <ion-icon name="home" slot="start">
+
+          </ion-icon>
+          <p>
+            Menú Principal
+          </p>
+        </ion-item>
+        <ion-item routerLink="/operation">
+          <ion-icon name="information-circle" slot="start">
+
+          </ion-icon>
+          <p>
+            ¿Cómo Funciona?
+          </p>
+        </ion-item>
+        <ion-item (click)="passData()">
+          <ion-icon name="person" slot="start">
+          </ion-icon>
+          <p>
+            Perfil
+          </p>
+        </ion-item>
+        
+        <br>
+        <br>
+        <br>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+    <ion-menu-toggle auto-hide="false">
+
+      <ion-item (click)="doLogout()" [routerDirection]="'root'">
+        <ion-icon name="exit" slot="end">
+
+        </ion-icon>
+        <p>
+          Cerrar Sesion
+        </p>
+
+
+      </ion-item>
+    </ion-menu-toggle>
+
+  </ion-footer>
+</ion-menu>
+
+
+
+<ion-router-outlet main></ion-router-outlet>
