@@ -15,10 +15,17 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { FirebaseDynamicLinks } from '@ionic-native/firebase-dynamic-links/ngx';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 @NgModule( {
-  declarations: [ AppComponent ],
-  entryComponents: [],
+  declarations: [ 
+    AppComponent,
+    
+   ],
+  entryComponents: [
+    
+  ],
   imports: [ BrowserModule,
              IonicModule.forRoot(),
              AppRoutingModule,
@@ -28,15 +35,19 @@ import { FirebaseDynamicLinks } from '@ionic-native/firebase-dynamic-links/ngx';
              AngularFirestoreModule.enablePersistence(),
              AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
              AngularFireFunctionsModule, // firebase cloud functions
-             AngularFireMessagingModule // notifications,
+             AngularFireMessagingModule, // notifications,
+             AngularFireStorageModule 
+             
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FirebaseDynamicLinks
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  
 } )
 export class AppModule {
 }

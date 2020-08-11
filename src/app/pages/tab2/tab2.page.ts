@@ -6,7 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: [ 'tab2.page.scss']
 })
 export class Tab2Page {
-
-  constructor() {}
-
+  //LISTA DE TIPOS DE COMIDAS 
+  list=[];
+  constructor() {
+    this.list=[
+      {
+        'id':'0000',
+        'name':'DESAYUNO',
+        'imagen':'/assets/ImagenListas/desayuno.png'
+      },
+      {
+        'id':'1111',
+        'name':'ALMUERZO',
+        'imagen':'/assets/ImagenListas/almuerzo.png'
+      },
+      {
+        'id':'2222',
+        'name':'MERIENDA',
+        'imagen':'/assets/ImagenListas/cena.png'
+      }
+    ]
+  }
 }

@@ -1,9 +1,55 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title >
+      APP
     </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-icon  name = "search" size = "large"> </ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-icon name="more" size = "large"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content fullscreen>
+
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+              <ion-icon name="restaurant-outline" color="secondary"></ion-icon>
+              RECETAS DIARIAS
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+           <ion-list>
+             <ion-item *ngFor="let item of list" routerLink="/list-recipes/{{item.id}}">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div>
+                       <img  src="{{item.imagen}}" slot="start">
+                    </div>
+                  </ion-col>
+                  <ion-col>
+                    <div>
+                      <ion-label text-center>{{item.name}}</ion-label>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+                </ion-item>
+                
+          </ion-list>
+          </ion-card-content>
+         </ion-card>
+         </ion-col>
+         </ion-row>
+  </ion-grid>
+</ion-content>

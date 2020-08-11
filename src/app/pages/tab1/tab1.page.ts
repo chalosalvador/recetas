@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { NgForm } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
+import { InformationPage} from '../information/information.page';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,7 +13,7 @@ import { CommonService } from '../../services/common.service';
 })
 export class Tab1Page {
 
-  constructor(private authService: AuthService, public commonService: CommonService ) {}
+  constructor(public afAuth: AngularFireAuth,private authService: AuthService, public commonService: CommonService, private userService: UserService,) {}
 
   async doLogout() {
     try {

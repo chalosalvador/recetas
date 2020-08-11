@@ -1,9 +1,26 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title >
+      APP
     </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-icon  name = "search" size = "large"> </ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-icon name="more" size = "large"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <!--<ion-button type="button" size="small" (click)="doLogout()">Cerrar sesión</ion-button>-->
+  <ion-title >PLANIFICACION</ion-title>
+  <!--galeria de imagenes-->
+  <ion-card class="welcome-card">
+    <img src="/assets/fondo9.jpg" />
+    
+    </ion-card>
+</ion-content>

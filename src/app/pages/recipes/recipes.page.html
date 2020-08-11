@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <!--boton de regresar-->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/breakfast"></ion-back-button>
+    </ion-buttons>
+    <ion-title >
+      RECETAS
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+              {{recipeDetails.name}}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let detail of recipeDetailList">
+                <ion-label>
+                  {{detail.name}}
+                </ion-label>
+                {{detail.value}}
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+
+</ion-content>
