@@ -9,6 +9,25 @@ import { CommonService } from '../../services/common.service';
 })
 export class StartPage {
 
+  slides = [
+    {
+      img: 'assets/fondoInicio.jpg',
+      titulo: 'Visible Changes<br>in 3 weeks'
+    },
+    {
+      img: 'assets/ImagenFondo3.gif',
+      titulo: 'Forget about<br>strict diet'
+    },
+    {
+      img: 'assets/ImagenFondo.jpg',
+      titulo: 'Save money on<br>gym membership'
+    }
+  ];
+
+
+
+
+
   constructor(private authService: AuthService, public commonService: CommonService) {}
   
   async doLogout() {

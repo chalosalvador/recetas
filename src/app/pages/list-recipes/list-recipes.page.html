@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <!--boton de regresar-->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title >
+      LISTA DE RECETAS
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+<!--IMPRIME UNA LISTA DE LAS RECETAS PARA DESAYUNOS -->
+  <ion-card *ngFor="let recipe of recipesList">
+    <ion-card-header>
+      <ion-card-title>{{recipe.data.name}} </ion-card-title>
+      <!--<ion-card-subtitle>Chef: {{item.chef}}</ion-card-subtitle>-->
+    </ion-card-header>
+    <ion-card-content>
+      <!--ENVIA LA IP DE CADA DESAYUNO SELECCIONADO, A LA PAGINA RECETAS-->
+      <ion-item routerLink="/recipes/{{recipe.id}}">
+        <!--iMPREME LAS IMAGENES DE RECETAS -->
+      <img src="{{recipe.data.photo}}">
+     
+      </ion-item>
+     
+    
+  
+    </ion-card-content>
+    
+    
+  
+   
+  </ion-card>
+
+</ion-content>
+

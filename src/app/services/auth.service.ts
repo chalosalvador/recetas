@@ -16,7 +16,7 @@ export class AuthService {
   public getCurrentUser() {
     return this.afAuth.auth.currentUser;
   }
-
+ 
   public authState() {
     return this.afAuth.authState;
   }

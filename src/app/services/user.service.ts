@@ -7,8 +7,9 @@ import * as firebase from 'firebase/app';
   providedIn: 'root'
 } )
 export class UserService {
-  
 
+  
+  
   constructor( public afAuth: AngularFireAuth,public afDB: AngularFirestore ) {
   }
 //CREACION DE USUARIOS EN BDD
@@ -35,11 +36,41 @@ export class UserService {
   }
   //OBTENER USUARIO DESDE LA BDD
 
-  getUser( id ) {
+  
+  /*async getUser(id){
+    try {
+      const result= await this.afDB.collection('users').doc(id).ref.get();
+      if(result.exists){
+        return result.data();
+      }else{
+        throw new Error ('Data not found with given id');
+      }
+    } catch (error) {
+      throw new Error(error);
+      
+    }
     
-    return this.afDB.collection( 'users' ).doc( id ).get(); // esto se resuelve en una promesa con un objeto con los datos del usuario de
-                                                            // la bdd
+    
+  }*/
+  
+  getUser (id) { 
+    return this.afDB.collection ("users").doc(id).get ();
   }
+  
+  /*getUser(id){
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth.user.subscribe(currentUser => {
+        if(currentUser){
+          this.snapshotChangesSubscription = this.afDB.doc<any>('users/' + currentUser.uid + name ).valueChanges()
+          .subscribe(snapshots => {
+            resolve(snapshots);
+          }, err => {
+            reject(err)
+          })
+        }
+      })
+    });
+  }*/
 
   //AGREGAR INFORMACION AL PERFIL DEL USUARIO
   AddData(problem){
