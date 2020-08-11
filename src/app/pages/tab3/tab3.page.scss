@@ -1,1 +1,33 @@
 
+//ESTILO PARA QUITAR EL ESPACIO DE EVENTOS DEL CALENDARIO 
+:host ::ng-deep{
+    .weekview-allday-table {
+        font-size: 12px;
+    }
+    .weekview-allday-label{
+        display:none;
+    }
+    .calendar-event-inner{
+        font-size: 10px;
+        line-height:normal ;
+        line-break: auto;
+    }
+    .calendar-hour-column{
+        display: none;
+    }
+    .weekview-allday-content-wrapper{
+        display: table-cell;
+    }
+    
+
+    
+}
+ion-fab-button{
+    --background-color: #ADFF2F;
+}
+ion-icon{
+    color: #00008B;
+
+}
+
+

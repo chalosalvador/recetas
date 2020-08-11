@@ -11,28 +11,26 @@ h3 {
     font-weight: lighter;
     margin-bottom: 60px;
 }
-
-/*img {
-    //max-height: 400px;
-}*/
-
-/*.slide-img-padding {
-    padding: 40px;
-}*/
-
-
-.btn-primary {
-    height: 60px;
+div,img{
+    display: block;
+    position: relative;		
+    
 }
+ion-button{
+    position: absolute;
+    left: 160px;//posicion horizontal
+    padding: 5px;
+    width: 40%;
+    bottom: 45px;//posicion vertical
+}
+
+
 
 ion-grid {
     margin-bottom: 20px;
 }
 
-ion-slides {
-    --bullet-background: #CED1DF;
-    --bullet-background-active: #8890B2;
-}
+
 
 /*@media screen and (max-height: 775px) {
 

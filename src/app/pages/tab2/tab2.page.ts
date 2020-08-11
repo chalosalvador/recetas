@@ -1,30 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RecipesService } from '../../services/recipes.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: [ 'tab2.page.scss']
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
   //LISTA DE TIPOS DE COMIDAS 
-  list=[];
-  constructor() {
-    this.list=[
-      {
-        'id':'0000',
-        'name':'DESAYUNO',
-        'imagen':'/assets/ImagenListas/desayuno.png'
-      },
-      {
-        'id':'1111',
-        'name':'ALMUERZO',
-        'imagen':'/assets/ImagenListas/almuerzo.png'
-      },
-      {
-        'id':'2222',
-        'name':'MERIENDA',
-        'imagen':'/assets/ImagenListas/cena.png'
-      }
-    ]
+  recipesList: Array<any> = [];
+  recipeDetails: any;
+  items:any;
+  constructor(
+    public recipesService: RecipesService,
+    public router: Router,
+    public afDB: AngularFirestore,
+    public afSG: AngularFireStorage,
+    private route: ActivatedRoute
+  ) {
   }
+   
+
+  ngOnInit() {
+    this.getListRecipes();//inicializa la lista de recetas
+  }
+  //obtiene los datos desde la coleccion recetas y los muestra en una lista de platos
+  //segun el tipo de comida seleccionado 
+  //La lista esta generada en un array en tab2
+  getListRecipes() {
+
+    this.recipesService.getRecipesList().subscribe(data => {
+      this.recipesList = data
+      console.log(this.recipesList);
+     
+
+    });
+
+  }
+  //FUNCION PARA PASAR LOS DATOS DE LA RECETA SELECCIONADA A LA PAGINA 
+  //DE DETALLES DE LA RECETA 
+  pass(recipe) {
+    this.recipesService.sendData(recipe)
+    console.log(recipe);
+
+    this.router.navigateByUrl('/recipes');
+
+  }
+
+  async searchRecipes(event){
+  console.log(event.target.value);
+
+  const searchRecipe =event.target.value;
+    //
+
+  if (!searchRecipe) {
+    return this.getListRecipes();
+  }
+
+  this.recipesList = this.recipesList.filter(item => {
+    if (item.name && searchRecipe) {
+      return (item.name.toLowerCase().indexOf(searchRecipe.toLowerCase()) > -1);
+    }
+  });
+  
+  }
+
+
+
 }

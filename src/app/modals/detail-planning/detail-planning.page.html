@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{detailEvents.recipe.name}}
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button ion-button icon-only (click)="closeModal()" >
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button ion-button icon-only (click)="openPopover($event)" >
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+              <h1>
+               
+              </h1>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <p class="nutrition">
+                    Calorías:
+                    <br>
+
+                    {{detailEvents.calories}}
+                  </p>
+                </ion-col>
+                <ion-col>
+                  <p class="nutrition">
+                    Grasa:
+                    <br>
+                    {{detailEvents.fat}}
+                  </p>
+                </ion-col>
+                <ion-col>
+                  <p class="nutrition">
+                    Proteína:
+                    <br>
+                    {{detailEvents.protein}}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <div>
+              <h1>
+                {{detailEvents.recipe.description}}
+              </h1>
+            </div>
+
+            <ion-item-group>
+              <ion-item-divider class="hr">
+                <p>CHEF</p>
+              </ion-item-divider>
+              <div>
+                <label>
+                  <p>
+                    {{detailEvents.recipe.chefData.name}}
+                    {{detailEvents.recipe.chefData.lastname}}
+                  </p>
+                </label>
+              </div>
+            </ion-item-group>
+            <ion-item-group>
+
+              <ion-item-divider class="hr">
+                <p>
+
+                  TIEMPO DE PREPARACIÓN
+                </p>
+              </ion-item-divider>
+              <div>
+                <p>
+                  <ion-icon name="alarm">
+                  </ion-icon>
+                  {{detailEvents.recipe.time}}
+                </p>
+
+              </div>
+            </ion-item-group>
+            <ion-item-group>
+              <ion-item-divider class="hr">
+                <p>INGREDIENTES</p>
+              </ion-item-divider>
+              <div>
+
+                <ion-list *ngFor="let ingredientEvent of detailEvents.recipe.ingredientsData">
+                  <p> *
+                    {{ingredientEvent.quantity}}
+                    {{ingredientEvent.unit}}
+                    {{ingredientEvent.ingredient}}
+                  </p>
+                </ion-list>
+              </div>
+            </ion-item-group>
+            <ion-item-group>
+              <ion-item-divider class="hr">
+                <p>PASOS</p>
+              </ion-item-divider>
+              <div>
+                <ion-list *ngFor="let d of detailEvents.recipe.steps">
+                  <p> *
+                    {{d}}
+                  </p>
+                </ion-list>
+              </div>
+            </ion-item-group>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

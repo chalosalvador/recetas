@@ -3,90 +3,154 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 
-@Injectable( {
+@Injectable({
   providedIn: 'root'
-} )
+})
 export class UserService {
 
-  
-  
-  constructor( public afAuth: AngularFireAuth,public afDB: AngularFirestore ) {
+  constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore) {
   }
-//CREACION DE USUARIOS EN BDD
-  createUser(value){
+  //CREACION DE USUARIOS EN BDD
+  createUser(value) {
     return new Promise<any>((resolve, reject) => {
-      
+
       let currentUser = firebase.auth().currentUser;
-      //const uid='lUHYHyAerjgX7n6rXRBLh6UCZacp2';
+      //const uid='QvKCjj2UIrh9hb8WhQPLOgAeZ9e2';
       console.log(currentUser)
       this.afDB.collection('users').doc(currentUser.uid).set({
+        createAt:firebase.firestore.FieldValue.serverTimestamp(),
         name: value.name,
         lastname: value.lastname,
         nickname: value.nickname,
-        dateBirth:value.dateBirth,
-        height:value.height,
-        weight:value.weight,
-        gender:value.gender
+        dateBirth: value.dateBirth,
+        height: value.height,
+        weight: value.weight,
+        gender: value.gender,
+        dailyActivities:value.dailyActivities
       })
-      .then(
-        res => resolve(res),
-        err => reject(err)
-      )
+        .then(
+          res => resolve(res),
+          err => reject(err)
+        )
     })
   }
   //OBTENER USUARIO DESDE LA BDD
 
-  
-  /*async getUser(id){
-    try {
-      const result= await this.afDB.collection('users').doc(id).ref.get();
-      if(result.exists){
-        return result.data();
-      }else{
-        throw new Error ('Data not found with given id');
-      }
-    } catch (error) {
-      throw new Error(error);
-      
-    }
-    
-    
-  }*/
-  
-  getUser (id) { 
-    return this.afDB.collection ("users").doc(id).get ();
+  getUser(id) {
+    return this.afDB.collection("users").doc(id).get();
   }
-  
-  /*getUser(id){
-    return new Promise<any>((resolve, reject) => {
-      this.afAuth.user.subscribe(currentUser => {
-        if(currentUser){
-          this.snapshotChangesSubscription = this.afDB.doc<any>('users/' + currentUser.uid + name ).valueChanges()
-          .subscribe(snapshots => {
-            resolve(snapshots);
-          }, err => {
-            reject(err)
-          })
-        }
-      })
-    });
-  }*/
+  //OBTIENE LOS DETALLES DEL USUARIO REGISTRADO 
+  getUserDetail() {
+    let currentUser = firebase.auth().currentUser;
+    //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
+    //return this.afDB.collection("users").doc(uid).valueChanges();
+    return this.afDB.collection("users").doc(currentUser.uid).valueChanges();
+  }
+  getUserDetailImage(uid) {
+    //let currentUser = firebase.auth().currentUser;
+    //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
+    //return this.afDB.collection("users").doc(uid).valueChanges();
+    return this.afDB.collection("users").doc(uid).valueChanges();
+  }
+
 
   //AGREGAR INFORMACION AL PERFIL DEL USUARIO
-  AddData(problem){
+  addData(problem) {
     return new Promise<any>((resolve, reject) => {
-      
+
       let currentUser = firebase.auth().currentUser;
       console.log(currentUser.uid)
-      
-      this.afDB.collection('users').doc(currentUser.uid).update({'health-info': problem})
-        
+
+      this.afDB.collection('users').doc(currentUser.uid).update({ 'healthInfo': problem })
+
+        .then(
+          res => resolve(res),
+          err => reject(err)
+        )
+    })
+  }
+  updateUser(value){
+    return new Promise<any>((resolve, reject) => {
+      let currentUser = firebase.auth().currentUser;
+      //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
+      this.afDB.collection('users').doc(currentUser.uid).set(value)
+      //this.afDB.collection('users').doc(uid).set(value)
       .then(
         res => resolve(res),
         err => reject(err)
       )
     })
-  }
 
+
+  }
+  encodeImageUri(imageUri, callback) {
+    var c = document.createElement('canvas');
+    var ctx = c.getContext("2d");
+    var img = new Image();
+    img.onload = function () {
+      var aux:any = this;
+      c.width = aux.width;
+      c.height = aux.height;
+      ctx.drawImage(img, 0, 0);
+      var dataURL = c.toDataURL("image/jpeg");
+      callback(dataURL);
+    };
+    img.src = imageUri;
+  };
+
+  uploadImage(imageURI, randomId){
+    return new Promise<any>((resolve, reject) => {
+      let storageRef = firebase.storage().ref();
+      let imageRef = storageRef.child('image').child(randomId);
+      this.encodeImageUri(imageURI, function(image64){
+        imageRef.putString(image64, 'data_url')
+        .then(snapshot => {
+          snapshot.ref.getDownloadURL()
+          .then(res => resolve(res))
+        }, err => {
+          reject(err);
+        })
+      })
+    })
+  }
+  //AÑADE EL PLAN DE COMIDAS A CADA USER 
+  createPlan(plan) {
+
+    return new Promise<any>((resolve, reject) => {
+      let currentUser = firebase.auth().currentUser;
+      //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
+      //this.afDB.collection('users').doc(uid).collection('plan').add(
+      this.afDB.collection('users').doc(currentUser.uid).collection('plan').add(
+        plan
+      )
+        .then(
+          res => resolve(res),
+          err => reject(err)
+        )
+    })
+  }
+  //OBTIENE EL PLAN PARA MOSTRAR 
+  getPlan() {
+    let currentUser = firebase.auth().currentUser;
+    //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
+    //return this.afDB.collection("users").doc(uid).collection('plan').snapshotChanges();
+    return this.afDB.collection("users").doc(currentUser.uid).collection('plan').snapshotChanges();
+  }
+  //ACTUALIZAR EL PLAN SELECCIONADO
+  updatePlan(id,event){
+   let currentUser = firebase.auth().currentUser;
+    //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
+    //return this.afDB.collection("users").doc(uid).collection('plan').doc(id).update(event);
+    return this.afDB.collection("users").doc(currentUser.uid).collection('plan').doc(id).update(event);
+
+  }
+  //ELIMIANR EL PLAN SELECCIONADO 
+  deletePlan(planKey){
+    let currentUser = firebase.auth().currentUser;
+    //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
+    //return this.afDB.collection("users").doc(uid).collection('plan').doc(planKey).delete();
+    return this.afDB.collection("users").doc(currentUser.uid).collection('plan').doc(planKey).delete();
+
+  }
 
 }
