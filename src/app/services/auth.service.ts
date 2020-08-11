@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 // import { auth } from 'firebase/app';
 import { environment } from 'src/environments/environment';
+import { UserService } from './user.service';
 
 @Injectable( {
   providedIn: 'root'
 } )
 export class AuthService {
 
-  constructor( public afAuth: AngularFireAuth ) {
+  constructor( public afAuth: AngularFireAuth, public userService : UserService ) {
   }
 
   public getCurrentUser() {
@@ -35,7 +36,8 @@ export class AuthService {
         installApp: true,
         minimumVersion: '12'
       },
-      dynamicLinkDomain: 'planrecetas.grupomenta.com' // todo
+      //dynamicLinkDomain: 'planrecetas.grupomenta.com' // todo
+      dynamicLinkDomain: 'devplanrecetas.grupomenta.com'
     };
 
     return this.afAuth.auth.sendSignInLinkToEmail( email, actionCodeSettings )
@@ -97,4 +99,5 @@ export class AuthService {
   logout() {
     return this.afAuth.auth.signOut();
   }
+  
 }
