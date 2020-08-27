@@ -16,7 +16,7 @@ export class AuthService {
   public getCurrentUser() {
     return this.afAuth.auth.currentUser;
   }
- 
+
   public authState() {
     return this.afAuth.authState;
   }
@@ -36,7 +36,7 @@ export class AuthService {
         installApp: true,
         minimumVersion: '12'
       },
-      //dynamicLinkDomain: 'planrecetas.grupomenta.com' // todo
+      // dynamicLinkDomain: 'planrecetas.grupomenta.com' // todo
       dynamicLinkDomain: 'devplanrecetas.grupomenta.com'
     };
 
@@ -99,5 +99,5 @@ export class AuthService {
   logout() {
     return this.afAuth.auth.signOut();
   }
-  
+
 }
