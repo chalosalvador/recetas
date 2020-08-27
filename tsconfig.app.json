@@ -5,7 +5,8 @@
     "types": []
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    // "plugins/cordova-plugin-firebasex/types/index.d.ts"
   ],
   "exclude": [
     "src/test.ts",

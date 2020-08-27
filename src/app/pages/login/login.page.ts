@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
 
   async doLogin( form: NgForm ) {
     try {
+      this.commonService.presentLoading();
       await this.authService.login( form.value.email );
       await this.commonService.presentAlert( 'Inicio de sesión', 'Te hemos enviado un correo, revisa tu bandeja de entrada.' );
       // this.emailSent = true;
@@ -26,6 +27,6 @@ export class LoginPage implements OnInit {
       await this.commonService.presentAlert( 'Error', 'No se pudo enviar el correo electrónico de inicio de sesión.' );
       // this.errorMessage = e.message;
     }
-  }
+  }z
 
 }

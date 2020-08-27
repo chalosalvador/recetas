@@ -12,15 +12,15 @@ export class StartPage {
   slides = [
     {
       img: 'assets/fondoInicio.jpg',
-      titulo: 'Visible Changes<br>in 3 weeks'
+      titulo: 'Explora recetas sanas y deliciosas  '
     },
     {
       img: 'assets/ImagenFondo3.gif',
-      titulo: 'Forget about<br>strict diet'
+      titulo: 'Experimenta los beneficios de la comida vegana '
     },
     {
       img: 'assets/ImagenFondo.jpg',
-      titulo: 'Save money on<br>gym membership'
+      titulo: 'Planifica tus comidas con un menu validado por nutricionistas '
     }
   ];
 

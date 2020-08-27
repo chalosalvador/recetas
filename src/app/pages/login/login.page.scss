@@ -33,7 +33,7 @@ ion-content {
                   --border-color: transparent!important;
                   --highlight-height: 0;
                   --background: none;
-                  background: rgba(255,255,255,0.1);
+                  background: rgba(255, 255, 255, 0.473);
                   border-radius: 4px;
                   margin-bottom: 10px;
                   ion-icon {
@@ -42,6 +42,7 @@ ion-content {
                   ion-input {
                       --color: #00008B;
                   }
+                  
               }
           
       }

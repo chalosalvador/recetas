@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+     Estadísticas
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button ion-button icon-only (click)="closeModal()" >
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+             Información Nutricional
+            </ion-card-title>
+            <ion-card-content>
+              <canvas #barCanvas width="400" height="400" ></canvas>
+            </ion-card-content>
+
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+              Análisis Nutricional
+             </ion-card-title>
+        
+            <ion-card-content>
+              <ion-item-group>
+                <ion-item-divider class="hr">
+                  <p>
+                    Calorias:{{dayCalories}}
+                  </p>
+                </ion-item-divider>
+                <p>
+                 {{messageCalories}}
+                </p>
+              </ion-item-group>
+              <ion-item-group>
+                <ion-item-divider class="hr">
+                  <p>
+                    Grasas:{{dayGramsFat}}
+                  </p>
+                </ion-item-divider>
+                <p>
+                  {{messageFat}}
+                </p>
+
+              </ion-item-group>
+              <ion-item-group>
+                <ion-item-divider class="hr">
+                  <p>
+                    Proteinas:{{dayGramsProtein}}
+                  </p>
+                </ion-item-divider>
+                <p>
+                  {{messageProtein}}
+                </p>
+              </ion-item-group>
+             
+            </ion-card-content>
+
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
