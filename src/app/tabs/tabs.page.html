@@ -1,46 +1,21 @@
 
-<ion-menu side="start" menuId="first">
-  <ion-header>
-    <ion-toolbar color="success">
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item> {{userDetails.name}}</ion-item>
-      <ion-item (click)="doLogout()">
-        <ion-label>Cerrar Sesion</ion-label>
-        <ion-select placeholder="Ok"></ion-select>  
-      </ion-item>
-      
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-
-
-<ion-router-outlet main></ion-router-outlet>
 <!--nav inferior-->
-<ion-tabs color="success">
+<ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tab1" routerLink="/tabs/tab1">
-      <ion-icon name="home" size = "large" ></ion-icon>
-      <ion-badge></ion-badge>
+    <ion-tab-button (click)="timeWait()" tab="tab1" routerLink="/tabs/tab1">
+      <ion-icon name="home" size="large"></ion-icon>
+      <ion-label>Inicio</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2" routerLink="/tabs/tab2">
-      <ion-label>DIARIO</ion-label>
+    <ion-tab-button (click)="timeWait()" tab="tab2" routerLink="/tabs/tab2">
+      <ion-icon name="basket" size="large"></ion-icon>
+      <ion-label>Diario</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3" routerLink="/tabs/tab3">
-      <ion-label>PLANIFICACION</ion-label>
+    <ion-tab-button (click)="timeWait()" tab="tab3" routerLink="/tabs/tab3">
+      <ion-icon name="restaurant" size="large"></ion-icon>
+      <ion-label>Planificación</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="Informacion">
-      <ion-label>INFORMACION</ion-label>
-    </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

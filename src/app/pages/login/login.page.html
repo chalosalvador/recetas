@@ -4,29 +4,36 @@
       <div class="title">
         <img src="https://image.flaticon.com/icons/png/512/149/149071.png">
       </div>
-      <h2>RECETAS SALUDABLES</h2>
-      <h3>¡Planificación de Comidas!</h3>
+      <h2>
+        RECETAS SALUDABLES
+      </h2>
+      <h3>
+        ¡Planificación de Comidas!
+      </h3>
       <br>
       <br>
       <br>
-      <p>Inicia Sesión para obtener una cuenta</p>
+      <p>
+        Inicia Sesión para obtener una cuenta
+      </p>
     </div>
+    <br>
+  
     <div class="body">
       <form #form="ngForm" (ngSubmit)="doLogin(form)" method="post">
         <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input ngModel type="email" name="email" required inputmode="email" clearInput="true"
-            autofocus="true" autocomplete="true"></ion-input>
+          <ion-label position="floating">
+            Email
+          </ion-label>
+          <ion-input [(ngModel)]="email" type="email" name="email" required inputmode="email" clearInput="true"
+            autofocus="true" autocomplete="true">
+          </ion-input>
         </ion-item>
 
-        <ion-button  type="submit" color="success"
-        expand="full"
-        shape="round"
-        class="btn-primary"
-        mode="ios">
-        Entrar
-</ion-button>
-      </form> 
+        <ion-button [disabled]="!email" type="submit"  expand="full" shape="round" class="btn-primary" mode="ios">
+          Entrar
+        </ion-button>
+      </form>
     </div>
   </div>
 </ion-content>

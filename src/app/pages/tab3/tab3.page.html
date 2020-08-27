@@ -1,26 +1,79 @@
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar>
+    <!--boton de regresar-->
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/tabs/tab1">
+      </ion-back-button>
     </ion-buttons>
-    <ion-title >
-      APP
+    <ion-title>
+      PLANIFICACIÓN
     </ion-title>
-    <ion-buttons slot="secondary">
-      <ion-icon  name = "search" size = "large"> </ion-icon>
-    </ion-buttons>
-    <ion-buttons slot="secondary">
-      <ion-icon name="more" size = "large"></ion-icon>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
-  <!--<ion-button type="button" size="small" (click)="doLogout()">Cerrar sesión</ion-button>-->
-  <ion-title >PLANIFICACION</ion-title>
-  <!--galeria de imagenes-->
-  <ion-card class="welcome-card">
-    <img src="/assets/fondo9.jpg" />
-    
-    </ion-card>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-row>
+              <ion-col size="2">
+                <ion-button fill="clear" (click)="back()">
+                  <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col size="8">
+              <ion-card-title class="ion-text-center">
+                {{ viewTitle }}
+              </ion-card-title>
+              </ion-col>
+              <ion-col size="2">
+                <ion-button fill="clear" (click)="next()">
+                  <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+        
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid >
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" size-lg="6">
+        <ion-card>
+
+          <ion-card-content>
+            <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+              (onCurrentDateChanged)="onCurrentDateChanged($event)"  (onRangeChanged)="reloadSource(startTime, endTime)"
+              (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+              (onTimeSelected)="onTimeSelected($event)" startHour="12" endHour="14" step="30" startingDayWeek="1"
+              [weekviewAllDayEventTemplate]="template">
+            </calendar>
+
+            <ng-template #template let-displayEvent="displayEvent">
+              <div class="calendar-event-inner">{{displayEvent.event.title}}</div>
+          </ng-template>
+          
+            
+
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="openModalStatistics()">
+      <ion-icon name="stats-chart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+
+
+
+        

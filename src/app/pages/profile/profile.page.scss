@@ -1,0 +1,21 @@
+:host ::ng-deep{
+    ion-avatar{
+        --border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        
+
+    }
+    
+    .fab-horizontal-start{
+        left: calc(80px + var(--ion-safe-area-left, 0px));
+    }
+    .fab-img{
+        width: 30px;
+        height: 30px;
+    }
+        
+       
+    
+         
+}
