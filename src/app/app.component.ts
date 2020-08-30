@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from '@ionic/angular';
+import { AlertController, NavController, Platform, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
@@ -8,17 +8,19 @@ import { FirebaseDynamicLinks } from '@ionic-native/firebase-dynamic-links/ngx';
 import { CommonService } from './services/common.service';
 import { UserService } from './services/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+
 //import { FCM } from '@ionic-native/fcm/ngx';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
-})
+@Component( {
+  selector:'app-root',
+  templateUrl:'app.component.html',
+  styleUrls:[ 'app.component.scss' ]
+} )
 export class AppComponent {
 
   profileInfo: any = {};
   detailsImage: any = {};
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -30,121 +32,159 @@ export class AppComponent {
     private userService: UserService,
     public afAuth: AngularFireAuth,
     public router: Router,
-    //private fcm: FCM
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
+    // private fcm: FCM
   ) {
-    
+
     this.initializeApp();
     this.getProfile();
   }
 
   initializeApp() {
 
-    //ENVIO DEL LINK PARA LOGUEARSE EN LA APLICACION
-    this.platform.ready().then(async () => {
+    // ENVIO DEL LINK PARA LOGUEARSE EN LA APLICACION
+    this.platform.ready().then( async () => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      // subscribe to a topic
-      // this.fcm.subscribeToTopic('Deals');
-
-      // get FCM token
-      // this.fcm.getToken().then(token => {
-      //   console.log(token);
-      // });
-//desmarcar esta parte
-      // // ionic push notification example
-      // this.fcm.onNotification().subscribe(data => {
-      //   console.log(data);
-      //   if (data.wasTapped) {
-      //     console.log('Received in background');
-      //   } else {
-      //     console.log('Received in foreground');
-      //   }
-      // });      
-
-      // refresh the FCM token
-      // this.fcm.onTokenRefresh().subscribe(token => {
-      //   console.log(token);
-      // });
-//esta no
-      // unsubscribe from a topic
-      // this.fcm.unsubscribeFromTopic('offers');
-  
-
       // Handle the logic here after opening the app with the Dynamic link
       this.firebaseDynamicLinks.onDynamicLink()
-        .subscribe(async (res: any) => {
-          console.log('DynamicLink', res);
+        .subscribe( async ( res: any ) => {
+          console.log( 'DynamicLink', res );
           try {
-            await this.authService.signInWithEmailLink(res.deepLink);
-            console.log('LoggedIn');
-          
-          } catch (e) {
-            await this.commonService.presentAlert('Login', '', 'Hubo un error al iniciar sesión.');
+            await this.authService.signInWithEmailLink( res.deepLink );
+            console.log( 'LoggedIn' );
+
+          } catch( e ) {
+            await this.commonService.presentAlert( 'Login', '', 'Hubo un error al iniciar sesión.' );
           }
 
-        }, (error: any) => console.log('DynamicLink ERROR', error));
+        }, ( error: any ) => console.log( 'DynamicLink ERROR', error ) );
 
-      //PROCESO DE LOGIN IDENTIFICA SI YA ESTA O NO LOGUEADO EL USUARIO
+      // PROCESO DE LOGIN IDENTIFICA SI YA ESTA O NO LOGUEADO EL USUARIO
       this.authService.authState()
-        .subscribe(async (user: any) => {
-          if (user) {
-            console.log('LoggedIn', user);
-            
+        .subscribe( async ( user: any ) => {
+          if ( user ) {
+            console.log( 'LoggedIn', user );
+
             // hacer consulta a la base para traer datos del usuario que esta ingresando
             this.commonService.presentLoading();
-            this.userService.getUserDetailImage(user.uid).subscribe(data => {
-              this.detailsImage=data;
-              console.log(this.detailsImage);
-              if(!this.detailsImage.image){
-                this.detailsImage.image="https://image.flaticon.com/icons/png/512/149/149071.png";
+            this.userService.getUserDetailImage( user.uid ).subscribe( data => {
+              this.detailsImage = data;
+              console.log( this.detailsImage );
+              if ( !this.detailsImage.image ) {
+                this.detailsImage.image = 'https://image.flaticon.com/icons/png/512/149/149071.png';
               }
-            });
-            this.userService.getUser(user.uid).subscribe(async userData => {
-              if (!userData.exists) { // nos dice si ya lleno o no el formualrio de datos
-                await this.navController.navigateRoot(['start']); // va al form de datos
+            } );
+            this.userService.getUser( user.uid ).subscribe( async userData => {
+              if ( !userData.exists ) { // nos dice si ya lleno o no el formualrio de datos
+                await this.navController.navigateRoot( [ 'start' ] ); // va al form de datos
               } else {
-                await this.navController.navigateRoot(['tabs/tab1']); // va al inicio de app
+                await this.navController.navigateRoot( [ 'tabs/tab1' ] ); // va al inicio de app
               }
-            });
-            //
+            } );
+
+
+            /**
+             * START PUSH NOTIFICATIONS
+             */
+
+            FirebasePlugin.onTokenRefresh( ( fcmToken ) => {
+              console.log( 'getToken', JSON.stringify( fcmToken ) );
+              if ( fcmToken ) {
+                console.log( 'Device registered' + JSON.stringify( fcmToken ) );
+                this.userService.registerToken( fcmToken, user.uid );
+              }
+            }, ( error ) => {
+              console.error( error );
+            } );
+
+            FirebasePlugin.onMessageReceived( async ( message: any ) => {
+              console.log( 'Message type: ' + message.messageType );
+              if ( message.messageType === 'notification' ) {
+                console.log( 'Notification message received' );
+                // this.userSrv.registerMessageReceived( {
+                //   messageType: message.messageType || null,
+                //   sound: message.sound || null,
+                //   title: message.title || null,
+                //   message: message.message || null,
+                //   aps: message.aps || null,
+                //   tap: message.tap || null,
+                //   sender_id: message[ 'google.c.sender.id' ] || null,
+                //   gcmMessage_id: message[ 'gcm.message_id' ] || null,
+                //   collapse_key: message.collapse_key || null,
+                //   from: message.from || null,
+                //   googleDeliveredPriority: message[ 'google.delivered_priority' ] || null,
+                //   googleMessageIdAndroid: message[ 'google.message_id' ] || null,
+                //   googleOriginalPriority: message["google.original_priority"] || null,
+                //   googleSentTime: message[ 'google.sent_time' ] || null,
+                //   googleTTL: message[ 'google.ttl' ] || null,
+                //   ttl: message.ttl || null,
+                //   id: message.id || null
+                // }, data.uid );
+
+                if ( message.tap === 'background' && message.message ) {
+                  console.log( 'Tapped in ' + message.tap );
+
+                  const alert = await this.alertCtrl.create( {
+                    header: message.title,
+                    message: message.message,
+                    buttons: [ 'Genial!' ]
+                  } );
+                  alert.present();
+                } else {
+                  const toast = await this.toastCtrl.create( {
+                    message: message.message,
+                    duration: 3000,
+                    position: 'top'
+                  } );
+                  toast.present();
+                }
+              }
+              console.dir( message );
+            }, ( error ) => {
+              console.error( error );
+            } );
+
             this.splashScreen.hide();
           } else {
-            console.log('NO LoggedIn');
-            await this.navController.navigateRoot(['login']);
+            console.log( 'NO LoggedIn' );
+            await this.navController.navigateRoot( [ 'login' ] );
 
             this.splashScreen.hide();
           }
-        });
-      
+        } );
 
-    });
-  
+
+    } );
+
   }
 
   getProfile() {
-    //OBTENER EL USUARIO LOGUEADO
+    // OBTENER EL USUARIO LOGUEADO
     this.authService.authState()
-      .subscribe(user => {
-        if (user) {
+      .subscribe( user => {
+        if ( user ) {
           this.profileInfo = user.toJSON();
-          console.log(this.profileInfo);
-          
+          console.log( this.profileInfo );
+
         }
-      });
+      } );
   }
 
   passData() {
-    this.router.navigateByUrl('/profile');
+    this.router.navigateByUrl( '/profile' );
 
   }
-  //BOTON CERRAR CESION
+
+  // BOTON CERRAR CESION
   async doLogout() {
     try {
       await this.authService.logout();
-      //await this.commonService.presentAlert('Cerrar Sesion', 'Usted a cerrado Sesion.');
-    } catch (e) {
-      console.error(e);
+      // await this.commonService.presentAlert('Cerrar Sesion', 'Usted a cerrado Sesion.');
+    } catch( e ) {
+      console.error( e );
 
     }
 

@@ -6,7 +6,7 @@
   },
   "include": [
     "src/**/*.ts",
-    // "plugins/cordova-plugin-firebasex/types/index.d.ts"
+     "plugins/cordova-plugin-firebasex/types/index.d.ts"
   ],
   "exclude": [
     "src/test.ts",
