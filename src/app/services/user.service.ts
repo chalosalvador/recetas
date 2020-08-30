@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(public afAuth: AngularFireAuth, public afDB: AngularFirestore) {
   }
-  //CREACION DE USUARIOS EN BDD
+  // CREACION DE USUARIOS EN BDD
   createUser(value) {
     return new Promise<any>((resolve, reject) => {
 
@@ -39,7 +39,7 @@ export class UserService {
   getUser(id) {
     return this.afDB.collection("users").doc(id).get();
   }
-  //OBTIENE LOS DETALLES DEL USUARIO REGISTRADO 
+  //OBTIENE LOS DETALLES DEL USUARIO REGISTRADO
   getUserDetail() {
     let currentUser = firebase.auth().currentUser;
     //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
@@ -51,6 +51,13 @@ export class UserService {
     //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
     //return this.afDB.collection("users").doc(uid).valueChanges();
     return this.afDB.collection("users").doc(uid).valueChanges();
+  }
+
+  public async registerToken( token, uid ) {
+    return await this.afDB.collection( 'devices').doc(token).set( {
+      token,
+      uid
+    } );
   }
 
 
@@ -113,7 +120,7 @@ export class UserService {
       })
     })
   }
-  //AÑADE EL PLAN DE COMIDAS A CADA USER 
+  //AÑADE EL PLAN DE COMIDAS A CADA USER
   createPlan(plan) {
 
     return new Promise<any>((resolve, reject) => {
@@ -129,7 +136,7 @@ export class UserService {
         )
     })
   }
-  //OBTIENE EL PLAN PARA MOSTRAR 
+  //OBTIENE EL PLAN PARA MOSTRAR
   getPlan() {
     let currentUser = firebase.auth().currentUser;
     //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
@@ -144,7 +151,7 @@ export class UserService {
     return this.afDB.collection("users").doc(currentUser.uid).collection('plan').doc(id).update(event);
 
   }
-  //ELIMIANR EL PLAN SELECCIONADO 
+  //ELIMIANR EL PLAN SELECCIONADO
   deletePlan(planKey){
     let currentUser = firebase.auth().currentUser;
     //const uid='VQX92hiZjcbPzgxInkF2OjQrg2h1';
