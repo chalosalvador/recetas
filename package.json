@@ -38,6 +38,7 @@
     "@ionic-native/status-bar": "^5.22.0",
     "@ionic/angular": "^5.2.1",
     "chart.js": "^2.9.3",
+    "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-androidx": "^1.0.2",
     "cordova-plugin-androidx-adapter": "^1.1.0",
@@ -107,12 +108,13 @@
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": " "
       },
       "cordova-plugin-firebase-dynamiclinks": {
-        "PAGE_LINK_DOMAIN": "devplanrecetas.grupomenta.com",
+        "PAGE_LINK_DOMAIN": "devplanrecetas.page.link",
         "APP_DOMAIN": "dev-plan-recetas.firebaseapp.com"
       }
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }
