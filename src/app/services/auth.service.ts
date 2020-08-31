@@ -37,7 +37,7 @@ export class AuthService {
         minimumVersion: '12'
       },
       // dynamicLinkDomain: 'planrecetas.grupomenta.com' // todo
-      dynamicLinkDomain: 'devplanrecetas.grupomenta.com'
+      dynamicLinkDomain: 'devplanrecetas.page.link'
     };
 
     return this.afAuth.auth.sendSignInLinkToEmail( email, actionCodeSettings )
