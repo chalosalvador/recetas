@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "setupdynamiclinks-dev": "ionic cordova plugin remove cordova-plugin-firebase-dynamiclinks --variable PAGE_LINK_DOMAIN=devplanrecetas.grupomenta.com --variable APP_DOMAIN=dev-plan-recetas.firebaseapp.com ; ionic cordova plugin add cordova-plugin-firebase-dynamiclinks --variable PAGE_LINK_DOMAIN=devplanrecetas.grupomenta.com --variable APP_DOMAIN=dev-plan-recetas.firebaseapp.com",
+    "setupdynamiclinks-dev": "ionic cordova plugin remove cordova-plugin-firebase-dynamiclinks --variable PAGE_LINK_DOMAIN=devplanrecetas.page.link --variable APP_DOMAIN=dev-plan-recetas.firebaseapp.com ; ionic cordova plugin add cordova-plugin-firebase-dynamiclinks --variable PAGE_LINK_DOMAIN=devplanrecetas.page.link --variable APP_DOMAIN=dev-plan-recetas.firebaseapp.com",
     "setup-google-services-dev": "cp src/environments/google_services/GoogleService-Info.dev.plist GoogleService-Info.plist && cp src/environments/google_services/google-services.dev.json google-services.json",
     "build:ios:dev": "npm run setup-google-services-dev ; ionic cordova platform rm ios ; rm -rf plugins ; rm -rf platforms ; ionic cordova plugin rm cordova-plugin-firebasex ; ionic cordova plugin add cordova-plugin-firebasex@9.1.1 && npm run setupdynamiclinks-dev && ENV=dev ionic cordova platform add ios && cd platforms/ios && pod install && pod update && cd ../.. && ENV=dev ionic cordova build ios",
     "build:ios:prod": "cp src/environments/google_services/GoogleService-Info.prod.plist GoogleService-Info.plist && cp src/environments/google_services/google-services.prod.json google-services.json && ionic cordova platform rm ios && ENV=prod ionic cordova platform add ios && ENV=prod ionic cordova build ios --prod --release",
@@ -38,7 +38,6 @@
     "@ionic-native/status-bar": "^5.22.0",
     "@ionic/angular": "^5.2.1",
     "chart.js": "^2.9.3",
-    "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-androidx": "^1.0.2",
     "cordova-plugin-androidx-adapter": "^1.1.0",
@@ -113,8 +112,7 @@
       }
     },
     "platforms": [
-      "ios",
-      "android"
+      "ios"
     ]
   }
 }
