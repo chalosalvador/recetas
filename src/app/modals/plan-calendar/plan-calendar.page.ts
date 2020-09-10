@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, LOCALE_ID, Inject} from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { UserService } from '../../services/user.service';
 import { NavParams } from '@ionic/angular';
@@ -24,6 +24,7 @@ export class PlanCalendarPage implements OnInit {
   calendar = {
     mode: 'month',
     currentDate: new Date(),
+    //locale : ' en-ES ' 
   };
   
   markDisabled = (date:moment.Moment) => {
@@ -44,9 +45,10 @@ export class PlanCalendarPage implements OnInit {
   @ViewChild(CalendarComponent,{static:false}) myCalendar: CalendarComponent
   showEventDetail: boolean;
   date:any;
+
   constructor(public viewCtrl: ModalController, public userService: UserService, 
     navParams: NavParams, public commonService: CommonService,private router: Router,
-    public navCtrl: NavController) {
+    public navCtrl: NavController, @Inject(LOCALE_ID) private locale: string) {
     
     this.detail = navParams.get('detailRecipe');
     console.log(this.detail)
@@ -76,7 +78,7 @@ export class PlanCalendarPage implements OnInit {
     if(this.queryEvents.length==1){
 
      this.commonService.presentAlertConfirm(
-       'Planifición',
+       'Planificación',
        'Ya existe una receta Desea Cambiarla' ,
        [
          {
@@ -91,7 +93,7 @@ export class PlanCalendarPage implements OnInit {
              try{
               this.userService.updatePlan(this.dataPlan.id,event)
               .then(() => {
-                this.commonService.presentAlert( 'Planificación', 'Tu receta ha sido actualizada con exito' );
+                this.commonService.presentAlert( 'Planificación', 'Tu receta ha sido actualizada con éxito' );
                 this.viewCtrl.dismiss();
                 this.navCtrl.pop();
                 console.log('plan actualizado');
@@ -113,7 +115,7 @@ export class PlanCalendarPage implements OnInit {
   }else{
     this.userService.createPlan(event)
       .then(() => {
-        this.commonService.presentAlert( 'Planificación', 'Tu receta ha sido añadida con exito' );
+        this.commonService.presentAlert( 'Planificación', 'Tu receta ha sido añadida con éxito' );
         this.viewCtrl.dismiss();
         this.navCtrl.pop();
         console.log('plan agregado');

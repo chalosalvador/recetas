@@ -1,12 +1,38 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
-  //opacity:0.5;
-  
-  
+
+p{
+  font-size:medium;
 }
-ion-content.background{
-    --background: url('/assets/fondo5.png') no-repeat 100% 100% ;
-    --opacity:0.5;
-    
+.title{
+  color:#454545;
+}
+img {
+  padding-top: 20px;
+  max-width: 100%;
+  border: 0;
+  width: 320px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+ion-card-header{
+  margin-top: -20px;
+}
+
+:host::ng-deep{
+
+  .card-content-md{
+    margin-left: -35px;
+    margin-right: -35px;
+    margin-top: -20px;
+  }
+
+    * {
+      box-sizing: border-box;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      
+    }
+   
+  
+
 }

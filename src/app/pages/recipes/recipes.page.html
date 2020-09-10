@@ -6,7 +6,7 @@
       </ion-back-button>
     </ion-buttons>
     <ion-title>
-      RECETAS
+      Detalle Receta
     </ion-title>
 
   </ion-toolbar>
@@ -29,32 +29,25 @@
           </ion-card-header>
           <ion-card-content>
             <div>
-              <img src="{{detail.photo}}">
-              <!-- <label class="serving">
-                <ion-icon name="person">
-                </ion-icon>
-                Porciones:
-                {{detail.servings}}
-              </label>
-              <label class="food">
-                <ion-icon name="restaurant">
-                </ion-icon>
-                {{detail.category}}
-
-              </label> -->
+              <img src="{{detail.picture}}">
+             
             </div>
             <ion-grid>
               <ion-row>
-                <ion-col>
+                <ion-col >
                   <p class="nutrition">
+                    <ion-icon name="nutrition-sharp">
+                    </ion-icon>
                     Calorías:
                     <br>
-
                     {{detail.nutritionFacts.calories}}
                   </p>
                 </ion-col>
                 <ion-col>
                   <p class="nutrition">
+                    <ion-icon name="fast-food-sharp">
+                      
+                    </ion-icon>
                     Grasa:
                     <br>
                     {{detail.nutritionFacts.fat}}
@@ -62,6 +55,8 @@
                 </ion-col>
                 <ion-col>
                   <p class="nutrition">
+                    <ion-icon name="barbell">
+                    </ion-icon>
                     Proteína:
                     <br>
                     {{detail.nutritionFacts.protein}}
@@ -71,9 +66,9 @@
             </ion-grid>
 
             <div>
-              <h1>
+              <h2>
                 {{detail.description}}
-              </h1>
+              </h2>
             </div>
 
             <ion-item-group>
@@ -83,6 +78,7 @@
               <div>
                 <label>
                   <p>
+                    <ion-icon name="person-sharp"></ion-icon>
                     {{chefs.name}}
                     {{chefs.lastname}}
                   </p>
@@ -103,6 +99,7 @@
                   <ion-icon name="alarm">
                   </ion-icon>
                   {{detail.time}}
+                  minutos
                 </p>
 
               </div>
@@ -115,7 +112,8 @@
               <div>
 
                 <ion-list *ngFor="let ingredient of finalIngredients">
-                  <p> *
+                  <p> 
+                    <ion-icon name="caret-forward-sharp"></ion-icon>
                     {{ingredient.quantity}}
                     {{ingredient.unit}}
                     {{ingredient.ingredient}}
@@ -129,7 +127,8 @@
               </ion-item-divider>
               <div>
                 <ion-list *ngFor="let i of detail.steps">
-                  <p> *
+                  <p> 
+                    <ion-icon name="radio-button-on-sharp"></ion-icon>
                     {{i}}
                   </p>
                 </ion-list>

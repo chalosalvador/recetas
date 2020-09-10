@@ -29,10 +29,16 @@
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
+            <div>
+              <img src="{{detailEvents.recipe.picture}}">
+            
+            </div>
             <ion-grid>
               <ion-row>
                 <ion-col>
                   <p class="nutrition">
+                    <ion-icon name="nutrition-sharp">
+                    </ion-icon>
                     Calorías:
                     <br>
 
@@ -41,6 +47,8 @@
                 </ion-col>
                 <ion-col>
                   <p class="nutrition">
+                    <ion-icon name="fast-food-sharp">
+                    </ion-icon>
                     Grasa:
                     <br>
                     {{detailEvents.fat}}
@@ -48,6 +56,8 @@
                 </ion-col>
                 <ion-col>
                   <p class="nutrition">
+                    <ion-icon name="barbell">
+                    </ion-icon>
                     Proteína:
                     <br>
                     {{detailEvents.protein}}
@@ -56,11 +66,10 @@
               </ion-row>
             </ion-grid>
             <div>
-              <h1>
+              <h2>
                 {{detailEvents.recipe.description}}
-              </h1>
+              </h2>
             </div>
-
             <ion-item-group>
               <ion-item-divider class="hr">
                 <p>CHEF</p>
@@ -68,6 +77,8 @@
               <div>
                 <label>
                   <p>
+                    <ion-icon name="person-sharp">
+                    </ion-icon>
                     {{detailEvents.recipe.chefData.name}}
                     {{detailEvents.recipe.chefData.lastname}}
                   </p>
@@ -87,6 +98,7 @@
                   <ion-icon name="alarm">
                   </ion-icon>
                   {{detailEvents.recipe.time}}
+                  minutos
                 </p>
 
               </div>
@@ -98,7 +110,8 @@
               <div>
 
                 <ion-list *ngFor="let ingredientEvent of detailEvents.recipe.ingredientsData">
-                  <p> *
+                  <p> 
+                    <ion-icon name="caret-forward-sharp"></ion-icon>
                     {{ingredientEvent.quantity}}
                     {{ingredientEvent.unit}}
                     {{ingredientEvent.ingredient}}
@@ -112,7 +125,8 @@
               </ion-item-divider>
               <div>
                 <ion-list *ngFor="let d of detailEvents.recipe.steps">
-                  <p> *
+                  <p> 
+                    <ion-icon name="radio-button-on-sharp"></ion-icon>
                     {{d}}
                   </p>
                 </ion-list>

@@ -1,38 +1,34 @@
 <ion-header>
   <ion-toolbar >
     <ion-buttons slot="start">
-      <ion-menu-button defaultHref="/">
+      <ion-menu-button  defaultHref="/">
       </ion-menu-button>
     </ion-buttons>
     <ion-title >
-      APP
+      FoodiePlan
     </ion-title>
     <ion-buttons slot="end">
-      <ion-icon  name = "search" size = "large" (click)="search()"> 
-      </ion-icon>
+      <ion-icon name="search-circle-sharp" size = "large"(click)="search()"></ion-icon>
+      
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
   <ion-grid fixed>
-    <ion-row class="ion-justify-content-center">
+    <ion-row class="ion-text-center">
       <ion-col size="12" size-md="6" size-lg="6">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title class="ion-text-center">
-             RECETAS RECIENTES
-            </ion-card-title>
-          </ion-card-header>
-        </ion-card>
+       <ion-title class="title" >
+        RECETAS RECIENTES
+       </ion-title>
       </ion-col>
     </ion-row>
   </ion-grid>
   
   <ion-grid fixed>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12" size-md="6" size-lg="6">
-        <ion-card  (click)='pass(recipe)' *ngFor="let recipe of recipesListDate">
+    <ion-row >
+      <ion-col size="6" size-md="6" size-lg="6" *ngFor="let recipe of recipesListDate">
+        <ion-card (click)='pass(recipe)'>
           <ion-card-header>
             <ion-card-title class="ion-text-center">
               <p>
@@ -41,12 +37,13 @@
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-list>
+            
               <ion-item (click)='pass(recipe)'>
-                <!--iMPREME LAS IMAGENES DE RECETAS -->
-                <img src="{{recipe.photo}}">
+            
+                <img src="{{recipe.picture}}">
+               
               </ion-item>
-            </ion-list>
+            
           </ion-card-content>
         </ion-card>
       </ion-col>

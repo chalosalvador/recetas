@@ -2,23 +2,19 @@
   <div class="container">
     <div class="header">
       <div class="title">
-        <img src="https://image.flaticon.com/icons/png/512/149/149071.png">
+        <img src="assets/FoodiePlan.png">
       </div>
-      <h2>
-        RECETAS SALUDABLES
-      </h2>
+      
+      
+      <br>
       <h3>
-        ¡Planificación de Comidas!
-      </h3>
-      <br>
-      <br>
-      <br>
-      <p>
         Inicia Sesión para obtener una cuenta
-      </p>
+      </h3>
     </div>
     <br>
+    <br>
   
+  </div>
     <div class="body">
       <form #form="ngForm" (ngSubmit)="doLogin(form)" method="post">
         <ion-item>
@@ -29,11 +25,13 @@
             autofocus="true" autocomplete="true">
           </ion-input>
         </ion-item>
+        <br>
+        <br>
 
         <ion-button [disabled]="!email" type="submit"  expand="full" shape="round" class="btn-primary" mode="ios">
           Entrar
         </ion-button>
       </form>
     </div>
-  </div>
+  
 </ion-content>

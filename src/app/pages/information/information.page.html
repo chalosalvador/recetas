@@ -73,9 +73,9 @@
               </ion-item>
               <ion-item>
                 <ion-label>
-                  Genero
+                  Género
                 </ion-label>
-                <ion-select formControlName="gender" placeholder="gender">
+                <ion-select formControlName="gender" placeholder="género">
                   <ion-select-option value="femenino">
                     Femenino
                   </ion-select-option>
@@ -88,7 +88,7 @@
                 <ion-label>
                   Tipo de actividad física
                 </ion-label>
-                <ion-select formControlName="dailyActivities" placeholder="dailyActivities" >
+                <ion-select formControlName="dailyActivities" placeholder="actividades Diarias">
                   <ion-select-option value="sedentario">
                     Sedentario
                   </ion-select-option>
@@ -112,11 +112,11 @@
                     <br>
                     <br>
                     <ion-button type="submit" color="success" expand="full" shape="round" class="btn-primary" mode="ios"
-                     [disabled]="!validations_form.valid">
-                     <span *ngIf="!showInformationSpinner">Siguiente</span> 
-                     <span *ngIf="showInformationSpinner">Guardando</span>
+                      [disabled]="!validations_form.valid">
+                      <span *ngIf="!showInformationSpinner">Siguiente</span>
+                      <span *ngIf="showInformationSpinner">Guardando</span>
                       <ion-spinner name="dots" *ngIf="isSave">
-                        
+
                       </ion-spinner>
                     </ion-button>
 

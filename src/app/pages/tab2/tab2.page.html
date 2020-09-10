@@ -4,12 +4,15 @@
       <ion-menu-button ></ion-menu-button>
     </ion-buttons>
     <ion-title >
-      APP
+      Recetas
     </ion-title>
   </ion-toolbar>
-  <ion-searchbar 
+  <ion-toolbar>
+    <ion-searchbar
     placeholder="Buscar Recetas"
     (ionChange)="searchRecipes($event)"></ion-searchbar>
+  </ion-toolbar>
+  
 </ion-header> 
 
 <ion-content fullscreen>
@@ -17,7 +20,7 @@
   <ion-grid fixed>
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-md="6" size-lg="6">
-        <ion-card (click)='pass(recipe)' *ngFor="let recipe of recipesList">
+        <ion-card class="sizeImg" (click)='pass(recipe)' *ngFor="let recipe of recipesList">
           <ion-card-header>
             <ion-card-title class="ion-text-center">
               <p>
@@ -26,13 +29,21 @@
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-list>
+            
               <ion-item >
                 <!--iMPREME LAS IMAGENES DE RECETAS -->
-                <!-- <img src="{{recipe.photo}}"> -->
+                <!-- <img src="/assets/ensalada.jpg"> -->
+                <img src="{{recipe.picture}}">
               </ion-item>
-            </ion-list>
           </ion-card-content>
+          <ion-item>
+            <label class="serving">
+              <ion-icon name="person">
+              </ion-icon>
+              {{recipe.servings}}
+              porciones
+            </label>
+          </ion-item>
         </ion-card>
       </ion-col>
     </ion-row>

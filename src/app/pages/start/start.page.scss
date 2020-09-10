@@ -11,31 +11,29 @@ h3 {
     font-weight: lighter;
     margin-bottom: 60px;
 }
-div,img{
-    display: block;
-    position: relative;		
-    
+
+img{
+    width: 60%;
+	height: 60%;
+
 }
 ion-button{
     position: absolute;
-    left: 160px;//posicion horizontal
-    padding: 5px;
-    width: 40%;
-    bottom: 45px;//posicion vertical
+    width: 80%;
+    bottom: -110px;
+    left: 35px;
+
 }
-
-
 
 ion-grid {
     margin-bottom: 20px;
 }
 
-
-
-/*@media screen and (max-height: 775px) {
-
-    img {
-        width: 70%;
-    }
-    
-}*/
+.slide-img-padding{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}    
+h3{
+    color:#454545;
+}

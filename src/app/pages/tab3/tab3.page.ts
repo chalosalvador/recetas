@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,LOCALE_ID, Inject} from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { UserService } from '../../services/user.service';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
@@ -7,7 +7,8 @@ import { StatisticsPage } from 'src/app/modals/statistics/statistics.page';
 import { CommonService } from '../../services/common.service';
 import { DetailPlanningPage } from 'src/app/modals/detail-planning/detail-planning.page';
 import * as moment from 'moment';
-
+import { map } from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -28,6 +29,7 @@ export class Tab3Page implements OnInit {
   calendar = {
     mode: 'week',
     currentDate: new Date(),
+    
   };
 
   markDisabled = (date: moment.Moment) => {
@@ -46,8 +48,10 @@ export class Tab3Page implements OnInit {
     public navCtrl: NavController,
     public userService: UserService,
     public modalController: ModalController,
-    public commonService: CommonService) 
+    public commonService: CommonService,
+    @Inject(LOCALE_ID) private locale: string) 
     {
+     
     let event: any;
     this.userService.getPlan().subscribe(colSnap => {
       this.eventSource = [];
@@ -65,18 +69,21 @@ export class Tab3Page implements OnInit {
         console.log(event);
         this.eventSource.push(event);
         this.myCalendar.loadEvents();
-        this.eventsSend.push(event);
       });
     });
+    
+  
   }
 
   async openModalStatistics() {
+
+    this.commonService.presentLoading();
     const modal = await this.modalController.create({
       component: StatisticsPage,
       cssClass: 'modal-statistics',
       backdropDismiss: false,
       componentProps: {
-        events: this.eventsSend.filter((event) => {
+        events: this.eventSource.filter((event) => {
           return moment(event.startTime).isSameOrAfter(this.startTime) && moment(event.startTime).isSameOrBefore(this.endTime)
         }),
         
@@ -102,7 +109,7 @@ export class Tab3Page implements OnInit {
 
   async onEventSelected(event) {
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
-
+    this.commonService.presentLoading();
     const modal = await this.modalController.create({
       component: DetailPlanningPage,
       cssClass: 'modal-detailEvent',

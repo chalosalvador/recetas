@@ -30,9 +30,9 @@ export class EditUserPage implements OnInit {
   limpiarCampos() {
 
     this.validations_form = this.formBuilder.group({
-      name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]),
-      lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
-      nickname: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
+      lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
+      nickname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
       dateBirth: new FormControl('', Validators.required),
       height: new FormControl('',[Validators.required,Validators.max(220), Validators.min(90)]),
       weight: new FormControl('', [Validators.required,Validators.max(200), Validators.min(30)]),
