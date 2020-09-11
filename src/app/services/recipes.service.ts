@@ -45,7 +45,7 @@ export class RecipesService {
     return this.afDB.collection("ingredients").snapshotChanges();
   }
   getRecipesDate(){
-    return this.afDB.collection('recipes', ref => ref.where("createAt","<=",new Date(Date.now()-60*60*1000)).limit(5)).valueChanges();
+    return this.afDB.collection('recipes', ref => ref.where("createAt","<=",new Date(Date.now())).orderBy("createAt","desc").limit(5)).valueChanges();
 
 
 }

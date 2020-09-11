@@ -9,7 +9,7 @@ import { CommonService } from './services/common.service';
 import { UserService } from './services/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-//import { FCM } from '@ionic-native/fcm/ngx';
+
 
 @Component( {
   selector:'app-root',
@@ -20,7 +20,7 @@ export class AppComponent {
 
   profileInfo: any = {};
   detailsImage: any = {};
-
+  isLoggedIn: boolean = false;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -34,7 +34,7 @@ export class AppComponent {
     public router: Router,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController
-    // private fcm: FCM
+ 
   ) {
 
     this.initializeApp();
@@ -66,22 +66,18 @@ export class AppComponent {
       this.authService.authState()
         .subscribe( async ( user: any ) => {
           if ( user ) {
+            this.isLoggedIn = true;
             console.log( 'LoggedIn', user );
-
             // hacer consulta a la base para traer datos del usuario que esta ingresando
-            this.commonService.presentLoading();
-            this.userService.getUserDetailImage( user.uid ).subscribe( data => {
-              this.detailsImage = data;
-              console.log( this.detailsImage );
-              if ( !this.detailsImage.image ) {
-                this.detailsImage.image = 'https://image.flaticon.com/icons/png/512/149/149071.png';
-              }
-            } );
-            this.userService.getUser( user.uid ).subscribe( async userData => {
-              if ( !userData.exists ) { // nos dice si ya lleno o no el formualrio de datos
-                await this.navController.navigateRoot( [ 'start' ] ); // va al form de datos
+            this.userService.getUserDetail()
+            .subscribe( async userData => {
+              if ( !userData ) { // nos dice si ya lleno o no el formualrio de datos
+                await  this.router.navigate(['/start']); // redirige a la página de bienvenida y despues a registro de datos
               } else {
-                await this.navController.navigateRoot( [ 'tabs/tab1' ] ); // va al inicio de app
+                  this.detailsImage=userData;
+                  console.log('usuario logueado',userData);
+                
+                await this.router.navigate( [ 'tabs/tab1' ] );// redirige a la página de inicio de app
               }
             } );
 
@@ -104,25 +100,7 @@ export class AppComponent {
               console.log( 'Message type: ' + message.messageType );
               if ( message.messageType === 'notification' ) {
                 console.log( 'Notification message received' );
-                // this.userSrv.registerMessageReceived( {
-                //   messageType: message.messageType || null,
-                //   sound: message.sound || null,
-                //   title: message.title || null,
-                //   message: message.message || null,
-                //   aps: message.aps || null,
-                //   tap: message.tap || null,
-                //   sender_id: message[ 'google.c.sender.id' ] || null,
-                //   gcmMessage_id: message[ 'gcm.message_id' ] || null,
-                //   collapse_key: message.collapse_key || null,
-                //   from: message.from || null,
-                //   googleDeliveredPriority: message[ 'google.delivered_priority' ] || null,
-                //   googleMessageIdAndroid: message[ 'google.message_id' ] || null,
-                //   googleOriginalPriority: message["google.original_priority"] || null,
-                //   googleSentTime: message[ 'google.sent_time' ] || null,
-                //   googleTTL: message[ 'google.ttl' ] || null,
-                //   ttl: message.ttl || null,
-                //   id: message.id || null
-                // }, data.uid );
+                
 
                 if ( message.tap === 'background' && message.message ) {
                   console.log( 'Tapped in ' + message.tap );
@@ -149,8 +127,9 @@ export class AppComponent {
 
             this.splashScreen.hide();
           } else {
+            this.isLoggedIn = false;
             console.log( 'NO LoggedIn' );
-            await this.navController.navigateRoot( [ 'login' ] );
+            await this.router.navigate( [ 'login' ] );
 
             this.splashScreen.hide();
           }
@@ -160,6 +139,7 @@ export class AppComponent {
     } );
 
   }
+ 
 
   getProfile() {
     // OBTENER EL USUARIO LOGUEADO
@@ -177,16 +157,17 @@ export class AppComponent {
     this.router.navigateByUrl( '/profile' );
 
   }
-
   // BOTON CERRAR CESION
   async doLogout() {
     try {
       await this.authService.logout();
-      // await this.commonService.presentAlert('Cerrar Sesion', 'Usted a cerrado Sesion.');
+  
+
     } catch( e ) {
       console.error( e );
 
     }
 
   }
+ 
 }

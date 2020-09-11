@@ -42,6 +42,7 @@ export class PlanOptionsPage implements OnInit {
             try{ 
             this.userService.deletePlan(this.optionsPlan.id);
             this.commonService.presentLoading();
+            this.commonService.presentAlert( 'Planificación', 'Tu receta ha sido eliminada de tu planificación' );
             this.popoverCtrl.dismiss();
             this.viewCtrl.dismiss();
                 console.log('plan eliminado ');

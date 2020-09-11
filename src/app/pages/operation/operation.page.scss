@@ -12,19 +12,28 @@ h3 {
     margin-bottom: 60px;
 }
 
-div,img{
-    display: block;
-    position: relative;		
-    
+img{
+    width: 60%;
+	height: 60%;
+
 }
-ion-button{
-    position: absolute;
-    left: 160px;//posicion horizontal
-    padding: 5px;
-    width: 40%;
-    bottom: 45px;//posicion vertical
-}
+// ion-button{
+//     position: flex;
+   
+//     align-items: center;
+//     justify-content: center;
+
+// }
 
 ion-grid {
     margin-bottom: 20px;
+}
+
+.slide-img-padding{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}    
+h3{
+    color:#454545;
 }

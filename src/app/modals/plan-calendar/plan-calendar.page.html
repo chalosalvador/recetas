@@ -31,7 +31,7 @@
     </ion-row>
   </ion-grid>
   <calendar 
-  *ngIf="modalReady"  [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+  *ngIf="modalReady"  [eventSource]="eventSource"  [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
     (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
     (onTimeSelected)="onTimeSelected($event)" [markDisabled]="markDisabled" [monthviewEventDetailTemplate]="template">
   </calendar>

@@ -25,6 +25,14 @@ export class Tab1Page implements OnInit {
     public recipesService: RecipesService) {
 
     }
+    async doLogout() {
+      try {
+        await this.authService.logout();
+      } catch ( e ) {
+        console.error( e );
+        await this.commonService.presentAlert( 'Error', 'No se pudo enviar el correo electrónico de inicio de sesión.' );
+      }
+    }
   ngOnInit() {
     this.getRecipes();
   }
@@ -49,5 +57,6 @@ export class Tab1Page implements OnInit {
   search(){
     this.router.navigateByUrl('tabs/tab2')
   }
+  
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecipesService } from '../../services/recipes.service';
 import { ModalController } from '@ionic/angular';
 import { PlanCalendarPage } from 'src/app/modals/plan-calendar/plan-calendar.page';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-recipes',
@@ -20,7 +21,8 @@ export class RecipesPage implements OnInit {
   constructor(
 
     public recipesService: RecipesService,
-    public modalController: ModalController) {
+    public modalController: ModalController,
+    public commonService: CommonService) {
 
   }
 
@@ -78,7 +80,7 @@ export class RecipesPage implements OnInit {
     });
   }
   async openModal() {
-
+    this.commonService.presentLoading();
     const modal = await this.modalController.create({
       component: PlanCalendarPage,
       cssClass:'modal-calendar',

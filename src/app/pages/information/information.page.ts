@@ -21,7 +21,7 @@ export class InformationPage implements OnInit {
   }
 
   ngOnInit() {
-    this.limpiarCampos();
+    this.resetFields();
 
   }
   //FUNCION PARA ENVIAR LOS DATOS A FIREBASE 
@@ -41,8 +41,9 @@ export class InformationPage implements OnInit {
     this.userService.createUser(data)//llama a la funcion crear usuario desde user.service.ts
       .then(() => {
         this.isSave = false;
-          //this.commonService.presentToast('Datos Registrados con éxito!');//mensaje de 
-          this.router.navigate(['/tabs/tab1'])//Navegacion a la pagina Info Salud
+         this.commonService.presentLoading();
+          this.router.navigate(['/tabs/tab1'])//Navegacion al inicio de página
+          
         }
       ).catch((error)=>{
         console.log('error', error);
@@ -51,12 +52,12 @@ export class InformationPage implements OnInit {
   }
   
 //FUNCION PARA LIMPIAR LOS CAMPOS 
-  limpiarCampos() {
+  resetFields() {
 
     this.validations_form = this.formBuilder.group({
-      name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]),
-      lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
-      nickname: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
+      lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
+      nickname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
       dateBirth: new FormControl('', Validators.required),
       height: new FormControl('',[Validators.required,Validators.max(220), Validators.min(90)]),
       weight: new FormControl('', [Validators.required,Validators.max(200), Validators.min(30)]),

@@ -1,8 +1,4 @@
 
-  img {
-    width: 100px; 
-    height: 100px;
-  }
   ion-label{
     margin-left: 10%; margin-top: 25%;
   
@@ -13,3 +9,46 @@
   ion-card-title{
     color: #00008B;
 }
+ion-searchbar{
+  --border-radius: 20px;
+  }
+
+  ion-card-header{
+    margin-top: -20px;
+}
+img {
+  
+  max-width: 100%;
+  border: 0;
+  width: 520px;
+  height: 150px;
+}
+label{
+  color:#454545;
+}
+  :host::ng-deep{
+    .searchbar-input.sc-ion-searchbar-md{
+      background: #0000004a;
+      color:snow;
+    }
+    .sc-ion-searchbar-md-h{
+      --icon-color: var(--ion-color-step-600, #fffefe);
+    }
+    .card-content-md{
+      margin-left: -35px;
+      margin-right: -35px;
+      margin-top: -20px;
+    }
+
+      * {
+        box-sizing: border-box;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+     
+    
+
+  }

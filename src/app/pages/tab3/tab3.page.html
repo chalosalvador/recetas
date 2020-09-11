@@ -6,7 +6,7 @@
       </ion-back-button>
     </ion-buttons>
     <ion-title>
-      PLANIFICACIÓN
+      Planificación
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -50,7 +50,7 @@
             <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
               (onCurrentDateChanged)="onCurrentDateChanged($event)"  (onRangeChanged)="reloadSource(startTime, endTime)"
               (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-              (onTimeSelected)="onTimeSelected($event)" startHour="12" endHour="14" step="30" startingDayWeek="1"
+              (onTimeSelected)="onTimeSelected($event)" formatWeekTitle="MMMM yyyy, 'Semana.'w" startHour="12" endHour="14" step="30" startingDayWeek="1"
               [weekviewAllDayEventTemplate]="template">
             </calendar>
 
