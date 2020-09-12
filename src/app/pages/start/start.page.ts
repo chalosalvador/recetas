@@ -27,13 +27,6 @@ export class StartPage {
   
   constructor(private authService: AuthService, public commonService: CommonService) {}
   
-  async doLogout() {
-    try {
-      await this.authService.logout();
-    } catch ( e ) {
-      console.error( e );
-      await this.commonService.presentAlert( 'Error', 'No se pudo enviar el correo electrónico de inicio de sesión.' );
-    }
-  }
+  
 
 }

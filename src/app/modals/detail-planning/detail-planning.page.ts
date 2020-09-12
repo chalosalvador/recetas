@@ -39,7 +39,6 @@ export class DetailPlanningPage implements OnInit {
   
   closeModal(){
     this.viewCtrl.dismiss()
-    this.navCtrl.pop();
   }
 
 }

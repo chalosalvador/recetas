@@ -95,7 +95,7 @@ export class PlanCalendarPage implements OnInit {
               .then(() => {
                 this.commonService.presentAlert( 'Planificación', 'Tu receta ha sido actualizada con éxito' );
                 this.viewCtrl.dismiss();
-                this.navCtrl.pop();
+                
                 console.log('plan actualizado');
         
               }
@@ -117,7 +117,7 @@ export class PlanCalendarPage implements OnInit {
       .then(() => {
         this.commonService.presentAlert( 'Planificación', 'Tu receta ha sido añadida con éxito' );
         this.viewCtrl.dismiss();
-        this.navCtrl.pop();
+        
         console.log('plan agregado');
 
       }
@@ -137,7 +137,7 @@ export class PlanCalendarPage implements OnInit {
   }
   dismiss() {
     this.viewCtrl.dismiss();
-    this.navCtrl.pop();
+    
   }
  
 

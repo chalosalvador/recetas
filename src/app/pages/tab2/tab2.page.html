@@ -15,12 +15,12 @@
   
 </ion-header> 
 
-<ion-content fullscreen>
+<ion-content padding>
 
-  <ion-grid fixed>
+  <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="12" size-md="6" size-lg="6">
-        <ion-card class="sizeImg" (click)='pass(recipe)' *ngFor="let recipe of recipesList">
+      <ion-col size="12" size-md="4" size-lg="4" *ngFor="let recipe of recipesList">
+        <ion-card (click)='pass(recipe)' >
           <ion-card-header>
             <ion-card-title class="ion-text-center">
               <p>
