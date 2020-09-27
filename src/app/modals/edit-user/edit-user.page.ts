@@ -47,7 +47,6 @@ export class EditUserPage implements OnInit {
   }
   closeModal(){
     this.viewCtrl.dismiss();
-    this.navCtrl.pop();
   }
    getImages() {
     this.options = {
@@ -98,7 +97,6 @@ export class EditUserPage implements OnInit {
         console.log('actualizado');
         
           this.viewCtrl.dismiss();//Cerrar el modal de datos del usuario
-          this.navCtrl.pop();
         }
       ).catch((error)=>{
         console.log('error', error);

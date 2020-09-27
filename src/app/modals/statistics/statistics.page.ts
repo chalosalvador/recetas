@@ -47,7 +47,7 @@ export class StatisticsPage implements OnInit {
     console.log('recetas estadisticas ', this.events);
   }
   ngOnInit() {
-    this.resetFields();
+   
     //CONSULTA A TODOS LOS DATOS DEL USUARIO CON LA SESIÓN ACTIVA
     this.userService.getUserDetail().subscribe(data => {
       this.detailsUser = data;
@@ -202,21 +202,7 @@ export class StatisticsPage implements OnInit {
     }
 
   }
-  resetFields(){
-    this.messageCalories="";
-    this.messageFat="";
-    this.messageProtein="";
-    this.averageFat=0;
-    this.averageProtein=0;
-    this.basalRate=0;
-    this.caloriesRef=0;
-    this.dayCalories=0;
-    this.dayGramsFat=0;
-    this.dayGramsProtein=0,
-    this.fatRef=0;
-    this.proteinRef=0;
-    
-  }
+  
 
 
 }

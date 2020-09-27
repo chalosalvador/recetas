@@ -1,4 +1,29 @@
+:host::ng-deep{
+  .searchbar-input.sc-ion-searchbar-md{
+    background: #0000004a;
+    color:snow;
+  }
+  .sc-ion-searchbar-md-h{
+    --icon-color: var(--ion-color-step-600, #fffefe);
+  }
+  .card-content-md{
+    margin-left: -35px;
+    margin-right: -35px;
+    margin-top: -20px;
+  }
 
+    * {
+      box-sizing: border-box;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+    }
+   
+  
+
+}
   ion-label{
     margin-left: 10%; margin-top: 25%;
   
@@ -26,29 +51,4 @@ img {
 label{
   color:#454545;
 }
-  :host::ng-deep{
-    .searchbar-input.sc-ion-searchbar-md{
-      background: #0000004a;
-      color:snow;
-    }
-    .sc-ion-searchbar-md-h{
-      --icon-color: var(--ion-color-step-600, #fffefe);
-    }
-    .card-content-md{
-      margin-left: -35px;
-      margin-right: -35px;
-      margin-top: -20px;
-    }
-
-      * {
-        box-sizing: border-box;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-      }
-     
-    
-
-  }
+  
