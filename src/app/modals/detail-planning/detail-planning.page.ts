@@ -12,6 +12,8 @@ import { PlanOptionsPage } from 'src/app/popover/plan-options/plan-options.page'
 })
 export class DetailPlanningPage implements OnInit {
   detailEvents: any;
+  detailMin: any;
+  changeName: boolean = false;
   constructor(
     public viewCtrl: ModalController, 
     public userService: UserService, 
@@ -22,9 +24,20 @@ export class DetailPlanningPage implements OnInit {
     {
     this.detailEvents = navParams.get('eventsDetail');
     console.log(this.detailEvents);
+     //CALCULO DE MINUTOS 
+   if(this.detailEvents.recipe.time>60){
+    this.detailMin=this.detailEvents.recipe.time / 60;
+    this.changeName=true;
+    console.log(this.detailMin);
+   }else{
+     this.detailMin=this.detailEvents.recipe.time;
+     this.changeName=false;
+     console.log(this.detailMin);
+    }
    }
 
   ngOnInit() {
+
   }
   async openPopover(ev:any) {
     const popover = await this.popoverCtrl.create({

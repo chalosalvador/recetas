@@ -93,11 +93,20 @@
                   TIEMPO DE PREPARACIÓN
                 </p>
               </ion-item-divider>
-              <div>
+              <div *ngIf="changeName">
                 <p>
                   <ion-icon name="alarm">
                   </ion-icon>
-                  {{detailEvents.recipe.time}}
+                  {{detailMin}}
+                  horas
+                </p>
+
+              </div>
+              <div *ngIf="!changeName">
+                <p>
+                  <ion-icon name="alarm">
+                  </ion-icon>
+                  {{detailMin}}
                   minutos
                 </p>
 

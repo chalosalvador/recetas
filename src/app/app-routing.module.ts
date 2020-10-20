@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuardService  } from './services/auth-guard.service';
+import { AuthGuardGuard } from './services/auth-guard.guard';
+import { NoauthGuardGuard } from './services/noauth-guard.guard';
 
 const routes: Routes = [
   {path: '',redirectTo:"login",pathMatch:"full"},
-  { path: '', loadChildren: './pages/loading/loading.module#LoadingPageModule' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule',canActivate: [AuthGuardService] },
-  { path: 'information', loadChildren: './pages/information/information.module#InformationPageModule',canActivate: [AuthGuardService] },
-  { path: 'health-info', loadChildren: './pages/health-info/health-info.module#HealthInfoPageModule',canActivate: [AuthGuardService] },
-  { path: 'start', loadChildren: './pages/start/start.module#StartPageModule',canActivate: [AuthGuardService] },
-  { path: 'recipes', loadChildren: './pages/recipes/recipes.module#RecipesPageModule',canActivate: [AuthGuardService] },
-  { path: 'list-recipes/:type', loadChildren: './pages/list-recipes/list-recipes.module#ListRecipesPageModule',canActivate: [AuthGuardService] },
-  { path: 'operation', loadChildren: './pages/operation/operation.module#OperationPageModule',canActivate: [AuthGuardService] },
-  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule',canActivate: [AuthGuardService] },
+  { path: 'loading', loadChildren: './pages/loading/loading.module#LoadingPageModule',canActivate: [NoauthGuardGuard] },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule',canActivate: [NoauthGuardGuard] },
+  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule',canActivate: [AuthGuardGuard]},
+  { path: 'information', loadChildren: './pages/information/information.module#InformationPageModule',canActivate: [AuthGuardGuard] },
+  { path: 'start', loadChildren: './pages/start/start.module#StartPageModule',canActivate: [AuthGuardGuard] },
+  { path: 'recipes', loadChildren: './pages/recipes/recipes.module#RecipesPageModule',canActivate: [AuthGuardGuard] },
+  { path: 'list-recipes/:type', loadChildren: './pages/list-recipes/list-recipes.module#ListRecipesPageModule',canActivate: [AuthGuardGuard] },
+  { path: 'operation', loadChildren: './pages/operation/operation.module#OperationPageModule',canActivate: [AuthGuardGuard] },
+  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule',canActivate: [AuthGuardGuard]},
   {
     path: 'plan-calendar',
     loadChildren: () => import('./modals/plan-calendar/plan-calendar.module').then( m => m.PlanCalendarPageModule)

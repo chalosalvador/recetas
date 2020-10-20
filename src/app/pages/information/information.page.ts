@@ -67,5 +67,50 @@ export class InformationPage implements OnInit {
 
     });
   }
+  validation_messages = {
+    'name': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'minlength', message: 'El nombre debe tener al menos 3 caracteres.' },
+      { type: 'maxlength', message: 'El nombre no puede ser mayor a 15 caracteres.' },
+      { type: 'pattern', message: 'Su nombre debe contener solo letras.' },
+    ],
+    'lastname': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'minlength', message: 'El apellido debe tener al menos 4 caracteres.' },
+      { type: 'maxlength', message: 'El apellido no puede ser mayor a 25 caracteres.' },
+      { type: 'pattern', message: 'Su apellido debe contener solo letras.' },
+    ],
+    'nickname': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'minlength', message: 'El apodo debe tener al menos 3 caracteres.' },
+      { type: 'maxlength', message: 'El apodo no puede ser mayor a 20 caracteres.' },
+      { type: 'pattern', message: 'Su apodo debe contener solo letras.' },
+    ],
+    'dateBirth': [
+      { type: 'required', message: 'Campo requerido.' }
+    ],
+    'height': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'min', message: 'El valor mínimo de la altura no puede ser menor a 90.' },
+      { type: 'max', message: 'El valor máximo de la altura no puede ser mayor a 220.' },
+      { type: 'pattern', message: 'Su altura debe contener solo números enteros.' },
+    ],
+    'weight': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'min', message: 'El valor mínimo del peso no puede ser menor a 30.' },
+      { type: 'max', message: 'El valor máximo del peso no puede ser mayor a 200.' },
+      { type: 'pattern', message: 'Su peso debe contener solo números enteros.' },
+    ],
+    'gender': [
+      { type: 'required', message: 'Campo requerido.' }
+    ],
+    'dailyActivities': [
+      { type: 'required', message: 'Campo requerido.' }
+    ],
+  
+  
+
+
+  }
 
 }

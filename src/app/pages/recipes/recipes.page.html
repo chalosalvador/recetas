@@ -94,11 +94,21 @@
                   TIEMPO DE PREPARACIÓN
                 </p>
               </ion-item-divider>
-              <div>
+              
+              <div *ngIf="changeName">
                 <p>
                   <ion-icon name="alarm">
                   </ion-icon>
-                  {{detail.time}}
+                  {{detailMin}}
+                  horas
+                </p>
+
+              </div>
+              <div *ngIf="!changeName">
+                <p>
+                  <ion-icon name="alarm">
+                  </ion-icon>
+                  {{detailMin}}
                   minutos
                 </p>
 
@@ -146,7 +156,7 @@
     <ion-row>
       <ion-col size="10" offset="1">
 
-        <ion-button type="button" color="success" expand="full" shape="round" (click)="openModal(detail)"
+        <ion-button type="button" color="success" expand="full" shape="round" (click)="openModal()"
           class="btn-primary" mode="ios">
           AÑADIR A MI PLANIFICACIÓN
 
