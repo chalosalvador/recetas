@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title >
+    <ion-title>
       {{detail.name}}
     </ion-title>
     <ion-buttons slot="start">
-      <ion-button ion-button icon-only (click)="dismiss()" >
+      <ion-button ion-button icon-only (click)="dismiss()">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -30,10 +30,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <calendar 
-  *ngIf="modalReady"  [eventSource]="eventSource"  [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
-    (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-    (onTimeSelected)="onTimeSelected($event)" [markDisabled]="markDisabled" [monthviewEventDetailTemplate]="template">
+  <calendar *ngIf="modalReady" [eventSource]="eventSource" [calendarMode]="calendar.mode"
+    [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)"
+    (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)"
+    [markDisabled]="markDisabled">
   </calendar>
-  
+
 </ion-content>

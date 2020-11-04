@@ -38,16 +38,6 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'list-recipes',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../pages/list-recipes/list-recipes.module').then( m => m.ListRecipesPageModule)
-          }
-        ]
-      },
-      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

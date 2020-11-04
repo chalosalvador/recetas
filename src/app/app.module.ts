@@ -20,13 +20,12 @@ import { EditUserPageModule } from './modals/edit-user/edit-user.module';
 import { DetailPlanningPageModule } from './modals/detail-planning/detail-planning.module';
 import {PlanOptionsPageModule} from './popover/plan-options/plan-options.module';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { AuthGuardService  } from './services/auth-guard.service';
+
 
 
 @NgModule( {
   declarations: [ 
     AppComponent,
- 
     
    ],
   entryComponents: [

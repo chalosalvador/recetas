@@ -16,10 +16,9 @@
 </ion-header> 
 
 <ion-content padding>
-
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="12" size-md="4" size-lg="4" *ngFor="let recipe of recipesList">
+      <ion-col size="12" size-md="4" size-lg="4" *ngFor="let recipe of recipesList | filter:filterRecipes ">
         <ion-card (click)='pass(recipe)' >
           <ion-card-header>
             <ion-card-title class="ion-text-center">

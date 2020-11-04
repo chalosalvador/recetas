@@ -27,6 +27,16 @@ export class StartPage {
   
   constructor(private authService: AuthService, public commonService: CommonService) {}
   
+  cancel(){
+    try {
+     this.authService.logout();
+     
   
+
+    } catch( e ) {
+      console.error( e );
+
+    }
+  }
 
 }

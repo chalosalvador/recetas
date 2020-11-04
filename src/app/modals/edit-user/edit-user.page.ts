@@ -16,12 +16,12 @@ export class EditUserPage implements OnInit {
   imageResponse: any;
   options: any;
   constructor(public viewCtrl: ModalController, public userService: UserService, public navCtrl: NavController,
-    navParams: NavParams, public commonService: CommonService,private formBuilder: FormBuilder,private imagePicker: ImagePicker,) {
+    navParams: NavParams, public commonService: CommonService, private formBuilder: FormBuilder, private imagePicker: ImagePicker,) {
     this.detailUser = navParams.get('detailUser');
     console.log(this.detailUser);
-    this.imageResponse=this.detailUser.image
-    
-   }
+    this.imageResponse = this.detailUser.image
+
+  }
 
   ngOnInit() {
     this.limpiarCampos();
@@ -30,25 +30,70 @@ export class EditUserPage implements OnInit {
   limpiarCampos() {
 
     this.validations_form = this.formBuilder.group({
-      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
-      lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
-      nickname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
+      lastname: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25), Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
+      nickname: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^(?=.*[a-zA-Z])(?=.*)[a-zA-Z]+$')]),
       dateBirth: new FormControl('', Validators.required),
-      height: new FormControl('',[Validators.required,Validators.max(220), Validators.min(90)]),
-      weight: new FormControl('', [Validators.required,Validators.max(200), Validators.min(30)]),
+      height: new FormControl('', [Validators.required, Validators.max(220), Validators.min(90)]),
+      weight: new FormControl('', [Validators.required, Validators.max(200), Validators.min(30)]),
       gender: new FormControl('', Validators.required),
       activities: new FormControl('', Validators.required),
-     
-      
-    
+
+
+
 
 
     });
   }
-  closeModal(){
+  validation_messages = {
+    'name': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'minlength', message: 'El nombre debe tener al menos 3 caracteres.' },
+      { type: 'maxlength', message: 'El nombre no puede ser mayor a 15 caracteres.' },
+      { type: 'pattern', message: 'Su nombre debe contener solo letras.' },
+    ],
+    'lastname': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'minlength', message: 'El apellido debe tener al menos 4 caracteres.' },
+      { type: 'maxlength', message: 'El apellido no puede ser mayor a 25 caracteres.' },
+      { type: 'pattern', message: 'Su apellido debe contener solo letras.' },
+    ],
+    'nickname': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'minlength', message: 'El apodo debe tener al menos 3 caracteres.' },
+      { type: 'maxlength', message: 'El apodo no puede ser mayor a 20 caracteres.' },
+      { type: 'pattern', message: 'Su apodo debe contener solo letras.' },
+    ],
+    'dateBirth': [
+      { type: 'required', message: 'Campo requerido.' }
+    ],
+    'height': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'min', message: 'El valor mínimo de la altura no puede ser menor a 90.' },
+      { type: 'max', message: 'El valor máximo de la altura no puede ser mayor a 220.' },
+      { type: 'pattern', message: 'Su altura debe contener solo números enteros.' },
+    ],
+    'weight': [
+      { type: 'required', message: 'Campo requerido.' },
+      { type: 'min', message: 'El valor mínimo del peso no puede ser menor a 30.' },
+      { type: 'max', message: 'El valor máximo del peso no puede ser mayor a 200.' },
+      { type: 'pattern', message: 'Su peso debe contener solo números enteros.' },
+    ],
+    'gender': [
+      { type: 'required', message: 'Campo requerido.' }
+    ],
+    'dailyActivities': [
+      { type: 'required', message: 'Campo requerido.' }
+    ],
+  
+  
+
+
+  }
+  closeModal() {
     this.viewCtrl.dismiss();
   }
-   getImages() {
+  getImages() {
     this.options = {
       // Android only. Max images to be selected, defaults to 15. If this is set to 1, upon
       // selection of a single image, the plugin will return it.
@@ -71,15 +116,15 @@ export class EditUserPage implements OnInit {
       // window.imagePicker.OutputType.BASE64_STRING (1)
       outputType: 1
     };
-    
+
     this.imagePicker.getPictures(this.options).then((results) => {
-        this.imageResponse='data:image/jpeg;base64,' + results;
+      this.imageResponse = 'data:image/jpeg;base64,' + results;
     }, (err) => {
       alert(err);
     });
-    
+
   }
-  updateUserDetail(value){
+  updateUserDetail(value) {
     let dataUser = {//declaracion de los datos que se obtiene de los inputs
       name: value.name,
       lastname: value.lastname,
@@ -88,19 +133,20 @@ export class EditUserPage implements OnInit {
       height: value.height,
       weight: value.weight,
       gender: value.gender,
-      dailyActivities:value. activities,
-      image:this.imageResponse
+      dailyActivities: value.activities,
+      image: this.imageResponse
     }
     this.commonService.presentLoading();
     this.userService.updateUser(dataUser)//llama a la funcion crear usuario desde user.service.ts
       .then(() => {
         console.log('actualizado');
-        
-          this.viewCtrl.dismiss();//Cerrar el modal de datos del usuario
-        }
-      ).catch((error)=>{
+        this.commonService.presentAlert('Perfil', 'Tus datos han sido actualizados con éxito');
+        this.viewCtrl.dismiss();//Cerrar el modal de datos del usuario
+      }
+      ).catch((error) => {
+        this.commonService.presentAlert('Perfil', 'No fue posible actualizar sus Datos');
         console.log('error', error);
-        
+
       })
   }
 

@@ -14,6 +14,7 @@ export class Tab2Page implements OnInit {
   recipesList: Array<any> = [];
   recipeDetails: any;
   items:any;
+  filterRecipes='';
   constructor(
     public recipesService: RecipesService,
     public router: Router,
@@ -26,6 +27,7 @@ export class Tab2Page implements OnInit {
 
   ngOnInit() {
     this.getListRecipes();//inicializa la lista de recetas
+   
   }
   //obtiene los datos desde la coleccion recetas y los muestra en una lista de platos
   //segun el tipo de comida seleccionado 
@@ -49,25 +51,13 @@ export class Tab2Page implements OnInit {
     this.router.navigateByUrl('/recipes');
 
   }
-
-  async searchRecipes(event){
-  console.log(event.target.value);
-
+//FILTRO DE BUSQUEDA
+  searchRecipes(event){
   const searchRecipe =event.target.value;
-    //
+    this.filterRecipes=searchRecipe;
+    console.log(searchRecipe);
 
-  if (!searchRecipe) {
-    return this.getListRecipes();
+
   }
-
-  this.recipesList = this.recipesList.filter(item => {
-    if (item.name && searchRecipe) {
-      return (item.name.toLowerCase().indexOf(searchRecipe.toLowerCase()) > -1);
-    }
-  });
-  
-  }
-
-
 
 }

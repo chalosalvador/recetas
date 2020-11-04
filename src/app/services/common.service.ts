@@ -26,7 +26,16 @@ export class CommonService {
   //FUNCION PARA MOSTRAR QUE ESTA CARGANDO EL LOGIN
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Please wait...',
+      message: 'Espere Por favor...',
+      duration: 2000,
+      translucent: true,
+    });
+    return await this.loading.present();
+  }
+  //FUNCION PARA MOSTRAR QUE SE ENCUENTRA AUTENTICANDO 
+  async presentLoadingAuthentication() {
+    this.loading = await this.loadingController.create({
+      message: 'Autenticando...',
       duration: 2000,
       translucent: true,
     });
@@ -38,10 +47,9 @@ export class CommonService {
   }
 
   //FUNCION PARA MOSTRAR UN MENSAJE DE ALERTA 
-  async presentAlert(title = '', subtitle = '', message = '') {
+  async presentAlert(title = '', message = '') {
     const alert = await this.alertController.create({
       header: title,
-      subHeader: subtitle,
       message,
       buttons: ['OK']
     });

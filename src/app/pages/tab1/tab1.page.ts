@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { NgForm } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
-import { InformationPage} from '../information/information.page';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserService } from '../../services/user.service';
 import { RecipesService } from '../../services/recipes.service';
 import { Router } from '@angular/router';
+import { IonRouterOutlet } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 
 
 
@@ -17,14 +17,17 @@ import { Router } from '@angular/router';
 })
 export class Tab1Page implements OnInit {
   recipesListDate: Array<any> = [];
-  constructor(public afAuth: AngularFireAuth,
+  subscription: any;
+  @ViewChildren(IonRouterOutlet) routerOutlets: QueryList<IonRouterOutlet>;
+  constructor(private platform:Platform,
+    public afAuth: AngularFireAuth,
     private authService: AuthService,
     public router: Router, 
     public commonService: CommonService, 
     private userService: UserService,
     public recipesService: RecipesService) {
-
-    }
+     }
+    
     async doLogout() {
       try {
         await this.authService.logout();

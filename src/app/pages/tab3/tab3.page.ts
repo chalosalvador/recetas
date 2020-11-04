@@ -7,8 +7,7 @@ import { StatisticsPage } from 'src/app/modals/statistics/statistics.page';
 import { CommonService } from '../../services/common.service';
 import { DetailPlanningPage } from 'src/app/modals/detail-planning/detail-planning.page';
 import * as moment from 'moment';
-import { map } from 'rxjs/operators';
-import {Observable} from 'rxjs';
+
 
 @Component({
   selector: 'app-tab3',

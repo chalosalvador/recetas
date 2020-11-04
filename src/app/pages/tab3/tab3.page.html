@@ -48,7 +48,7 @@
 
           <ion-card-content>
             <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
-              (onCurrentDateChanged)="onCurrentDateChanged($event)"  (onRangeChanged)="reloadSource(startTime, endTime)"
+              (onCurrentDateChanged)="onCurrentDateChanged($event)"
               (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
               (onTimeSelected)="onTimeSelected($event)" formatWeekTitle="MMMM yyyy, 'Semana.'w" startHour="12" endHour="14" step="30" startingDayWeek="1"
               [weekviewAllDayEventTemplate]="template">

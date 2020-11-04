@@ -27,7 +27,7 @@ export class PlanOptionsPage implements OnInit {
   }
   deletePLan(){
     this.commonService.presentAlertConfirm(
-      'Planifición',
+      'Planificación',
       '¿Esta seguro de eliminar la receta de su planificación?' ,
       [
         {
